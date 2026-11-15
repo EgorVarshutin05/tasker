@@ -1,0 +1,1681 @@
+{
+  "plan_version": "1.1",
+  "compiled_at": "2026-11-15T19:29:41.482380+00:00",
+  "commit": "36743d5b0625bb1cb8c634f503cfbe38a76c89cf",
+  "source_validation_before_edit": {
+    "checked_at": "2026-11-15T19:25:18.324450+00:00",
+    "unchanged": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/load.yml",
+      ".gitignore",
+      "LICENSE",
+      "Makefile",
+      "cmd/tasks/main.go",
+      "docs/assets/banner.svg",
+      "docs/coverage.md",
+      "docs/task_test_plan.tex",
+      "e2e/package-lock.json",
+      "e2e/package.json",
+      "e2e/playwright.config.ts",
+      "e2e/tests.spec.ts",
+      "e2e/tsconfig.json",
+      "go.mod",
+      "go.sum",
+      "internal/handler/handler.go",
+      "internal/handler/integration_test.go",
+      "internal/model/task.go",
+      "internal/repository/sqlite.go",
+      "internal/repository/sqlite_test.go",
+      "internal/service/service.go",
+      "internal/service/service_test.go",
+      "internal/testutil/fixture.go",
+      "load/common.js",
+      "load/s01_read.js",
+      "load/s02_write.js",
+      "tools/archive.py",
+      "tools/branch_coverage.py",
+      "tools/branchcover/main.go",
+      "tools/branchcover/probe.txt",
+      "tools/check_coverage.py",
+      "tools/configure_badges.py",
+      "tools/environment.py",
+      "tools/go_test_output.py",
+      "tools/run_load.py",
+      "tools/test_coverage.py",
+      "tools/versions/main.go",
+      "web/embed.go",
+      "web/index.html"
+    ],
+    "changed": [
+      "README.md"
+    ],
+    "missing": []
+  },
+  "environment": {
+    "timestamp": "2026-11-15T19:24:21.311499+00:00",
+    "platform": "Linux-6.12.115+deb13.1-amd64-x86_64-with-glibc2.41",
+    "cpu_count": 8,
+    "go": "go version go1.27.1 linux/amd64",
+    "embedded_sqlite": "{\"go\":\"go1.27.1\",\"sqlite\":\"3.46.1\",\"sqlite_number\":3046001,\"sqlite_source_id\":\"2024-08-13 09:16:08 c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33\"}",
+    "node": "v20.19.2",
+    "npm": "9.2.0",
+    "k6": "[Errno 2] No such file or directory: 'k6'",
+    "commit": "36743d5b0625bb1cb8c634f503cfbe38a76c89cf",
+    "cgo_enabled": "1",
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "sqlite_driver": "github.com/mattn/go-sqlite3 v1.14.24",
+    "playwright": "1.56.1",
+    "plan_sha256": "b7920ac2914b03f861908e2e27c20ebe8f86e1a267690a2600f35e8c1c8d450b",
+    "plan_sha256_note": "Hash identifies original version 1.0 before filling; version 1.1 hash stored separately in plan audit."
+  },
+  "go_run_times": {
+    "unit": {
+      "start": "2026-11-15T22:25:48.546569533+03:00",
+      "end": "2026-11-15T22:25:49.560214917+03:00"
+    },
+    "integration": {
+      "start": "2026-11-15T22:25:50.287038126+03:00",
+      "end": "2026-11-15T22:25:51.531549618+03:00"
+    },
+    "security-sql": {
+      "start": "2026-11-15T22:25:54.970770953+03:00",
+      "end": "2026-11-15T22:25:55.991629785+03:00"
+    }
+  },
+  "playwright_stats": {
+    "startTime": "2026-11-15T19:29:26.031Z",
+    "duration": 5583.862999999999,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "playwright_cases": [
+    {
+      "id": "A01",
+      "title": "A01 creation and whitespace rejection",
+      "duration_ms": 595,
+      "attachments": [
+        {
+          "name": "browser-version",
+          "contentType": "application/json",
+          "body": "eyJ2ZXJzaW9uIjoiMTMzLjAuNjk0My4xNiIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii9ob21lL2Vnb3IvLmNhY2hlL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTE1NS9jaHJvbWUtbGludXgvaGVhZGxlc3Nfc2hlbGwifQ=="
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "title": "A02 empty and ID-ordered list",
+      "duration_ms": 332,
+      "attachments": [
+        {
+          "name": "browser-version",
+          "contentType": "application/json",
+          "body": "eyJ2ZXJzaW9uIjoiMTMzLjAuNjk0My4xNiIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii9ob21lL2Vnb3IvLmNhY2hlL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTE1NS9jaHJvbWUtbGludXgvaGVhZGxlc3Nfc2hlbGwifQ=="
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "title": "A03 completion persists across real process restart",
+      "duration_ms": 662,
+      "attachments": [
+        {
+          "name": "browser-version",
+          "contentType": "application/json",
+          "body": "eyJ2ZXJzaW9uIjoiMTMzLjAuNjk0My4xNiIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii9ob21lL2Vnb3IvLmNhY2hlL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTE1NS9jaHJvbWUtbGludXgvaGVhZGxlc3Nfc2hlbGwifQ=="
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "title": "A04 physical deletion and repeat 404",
+      "duration_ms": 435,
+      "attachments": [
+        {
+          "name": "browser-version",
+          "contentType": "application/json",
+          "body": "eyJ2ZXJzaW9uIjoiMTMzLjAuNjk0My4xNiIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii9ob21lL2Vnb3IvLmNhY2hlL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTE1NS9jaHJvbWUtbGludXgvaGVhZGxlc3Nfc2hlbGwifQ=="
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "title": "A05 live DROP TABLE is displayed as storage failure",
+      "duration_ms": 440,
+      "attachments": [
+        {
+          "name": "browser-version",
+          "contentType": "application/json",
+          "body": "eyJ2ZXJzaW9uIjoiMTMzLjAuNjk0My4xNiIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii9ob21lL2Vnb3IvLmNhY2hlL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTE1NS9jaHJvbWUtbGludXgvaGVhZGxlc3Nfc2hlbGwifQ=="
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "S04 fetch appends XSS payload as text",
+      "duration_ms": 948,
+      "attachments": [
+        {
+          "name": "browser-version",
+          "contentType": "application/json",
+          "body": "eyJ2ZXJzaW9uIjoiMTMzLjAuNjk0My4xNiIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii9ob21lL2Vnb3IvLmNhY2hlL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTE1NS9jaHJvbWUtbGludXgvaGVhZGxlc3Nfc2hlbGwifQ=="
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "S05 raw server HTML escapes stored script",
+      "duration_ms": 857,
+      "attachments": [
+        {
+          "name": "browser-version",
+          "contentType": "application/json",
+          "body": "eyJ2ZXJzaW9uIjoiMTMzLjAuNjk0My4xNiIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii9ob21lL2Vnb3IvLmNhY2hlL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTE1NS9jaHJvbWUtbGludXgvaGVhZGxlc3Nfc2hlbGwifQ=="
+        }
+      ]
+    }
+  ],
+  "leaf_counts": {
+    "U01": 1,
+    "U02": 6,
+    "U03": 10,
+    "U04": 3,
+    "U05": 6,
+    "I01": 1,
+    "I02": 1,
+    "I03": 1,
+    "I04": 17,
+    "I05": 4,
+    "I06": 19,
+    "I07": 7,
+    "I08": 1,
+    "S03": 1,
+    "A01": 1,
+    "A02": 1,
+    "A03": 1,
+    "A04": 1,
+    "A05": 1,
+    "S04": 1,
+    "S05": 1,
+    "S01": 1,
+    "S02": 1
+  },
+  "coverage": {
+    "handler": {
+      "covered": 93,
+      "total": 95,
+      "percent": 97.89473684210526
+    },
+    "repository": {
+      "covered": 51,
+      "total": 58,
+      "percent": 87.93103448275862
+    },
+    "service": {
+      "covered": 26,
+      "total": 26,
+      "percent": 100.0
+    },
+    "total": {
+      "covered": 170,
+      "total": 179,
+      "percent": 94.97206703910615
+    },
+    "thresholds": {
+      "total": 85,
+      "service": 90
+    },
+    "passed": true
+  },
+  "branches": {
+    "scope": "Explicit if/conditional-for decisions and switch case/default outcomes. Range-loop iteration and MC/DC are not measured.",
+    "covered": 90,
+    "total": 98,
+    "percent": 91.83673469387755,
+    "service_covered": 16,
+    "service_total": 16,
+    "service_percent": 100.0,
+    "branches": [
+      {
+        "id": "internal/service/service.go:22:if",
+        "file": "internal/service/service.go",
+        "line": 22,
+        "function": "Create",
+        "kind": "if",
+        "condition": "!utf8.ValidString(title)",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/service/service.go:27:if",
+        "file": "internal/service/service.go",
+        "line": 27,
+        "function": "Create",
+        "kind": "if",
+        "condition": "n < 1 || n > 100",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/service/service.go:31:if",
+        "file": "internal/service/service.go",
+        "line": 31,
+        "function": "Create",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/service/service.go:39:if",
+        "file": "internal/service/service.go",
+        "line": 39,
+        "function": "List",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/service/service.go:42:if",
+        "file": "internal/service/service.go",
+        "line": 42,
+        "function": "List",
+        "kind": "if",
+        "condition": "tasks == nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/service/service.go:49:if",
+        "file": "internal/service/service.go",
+        "line": 49,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "id < 1 || id > 2147483647",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/service/service.go:53:if",
+        "file": "internal/service/service.go",
+        "line": 53,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/service/service.go:60:if",
+        "file": "internal/service/service.go",
+        "line": 60,
+        "function": "Delete",
+        "kind": "if",
+        "condition": "id < 1 || id > 2147483647",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:21:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 21,
+        "function": "Open",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/repository/sqlite.go:28:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 28,
+        "function": "Open",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:41:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 41,
+        "function": "Create",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:45:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 45,
+        "function": "Create",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/repository/sqlite.go:54:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 54,
+        "function": "List",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:59:for",
+        "file": "internal/repository/sqlite.go",
+        "line": 59,
+        "function": "List",
+        "kind": "for",
+        "condition": "rows.Next()",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:61:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 61,
+        "function": "List",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:66:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 66,
+        "function": "List",
+        "kind": "if",
+        "condition": "rows.Err() != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/repository/sqlite.go:74:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 74,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:79:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 79,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:83:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 83,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/repository/sqlite.go:86:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 86,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "n == 0",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:93:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 93,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/repository/sqlite.go:96:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 96,
+        "function": "Complete",
+        "kind": "if",
+        "condition": "tx.Commit() != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/repository/sqlite.go:104:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 104,
+        "function": "Delete",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/repository/sqlite.go:108:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 108,
+        "function": "Delete",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/repository/sqlite.go:111:if",
+        "file": "internal/repository/sqlite.go",
+        "line": 111,
+        "function": "Delete",
+        "kind": "if",
+        "condition": "n == 0",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:44:case-0",
+        "file": "internal/handler/handler.go",
+        "line": 44,
+        "function": "failure",
+        "kind": "switch",
+        "condition": "errors.Is(err, model.ErrTitle)",
+        "outcomes": [
+          "taken"
+        ],
+        "executed": [
+          "taken"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:46:case-1",
+        "file": "internal/handler/handler.go",
+        "line": 46,
+        "function": "failure",
+        "kind": "switch",
+        "condition": "errors.Is(err, model.ErrID)",
+        "outcomes": [
+          "taken"
+        ],
+        "executed": [
+          "taken"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:48:case-2",
+        "file": "internal/handler/handler.go",
+        "line": 48,
+        "function": "failure",
+        "kind": "switch",
+        "condition": "errors.Is(err, model.ErrNotFound)",
+        "outcomes": [
+          "taken"
+        ],
+        "executed": [
+          "taken"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:43:implicit-default",
+        "file": "internal/handler/handler.go",
+        "line": 43,
+        "function": "failure",
+        "kind": "switch",
+        "condition": "implicit default",
+        "outcomes": [
+          "taken"
+        ],
+        "executed": [
+          "taken"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:61:if",
+        "file": "internal/handler/handler.go",
+        "line": 61,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "path == \"/\"",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:62:if",
+        "file": "internal/handler/handler.go",
+        "line": 62,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "r.Method != \"GET\"",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:67:if",
+        "file": "internal/handler/handler.go",
+        "line": 67,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:72:if",
+        "file": "internal/handler/handler.go",
+        "line": 72,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "h.page.Execute(&body, tasks) != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "false"
+        ],
+        "missing": [
+          "true"
+        ]
+      },
+      {
+        "id": "internal/handler/handler.go:81:if",
+        "file": "internal/handler/handler.go",
+        "line": 81,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "path == \"/api/tasks\"",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:82:if",
+        "file": "internal/handler/handler.go",
+        "line": 82,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "r.Method != \"GET\" && r.Method != \"POST\"",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:86:if",
+        "file": "internal/handler/handler.go",
+        "line": 86,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "r.Method == \"GET\"",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:88:if",
+        "file": "internal/handler/handler.go",
+        "line": 88,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:96:if",
+        "file": "internal/handler/handler.go",
+        "line": 96,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "err != nil || media != \"application/json\" || len(params) > 1 ||\n\t(len(params) == 1 && !strings.EqualFold(params[\"charset\"], \"utf-8\"))",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:106:if",
+        "file": "internal/handler/handler.go",
+        "line": 106,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "dec.Decode(&body) != nil || body.Title == nil || dec.Decode(&struct{}{}) != io.EOF",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:111:if",
+        "file": "internal/handler/handler.go",
+        "line": 111,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:118:if",
+        "file": "internal/handler/handler.go",
+        "line": 118,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "strings.HasPrefix(path, \"/api/tasks/\")",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:121:if",
+        "file": "internal/handler/handler.go",
+        "line": 121,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "parts[0] != \"\" && (len(parts) == 1 || complete)",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:123:if",
+        "file": "internal/handler/handler.go",
+        "line": 123,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "complete",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:126:if",
+        "file": "internal/handler/handler.go",
+        "line": 126,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "r.Method != allow",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:131:if",
+        "file": "internal/handler/handler.go",
+        "line": 131,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:135:if",
+        "file": "internal/handler/handler.go",
+        "line": 135,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "complete",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:137:if",
+        "file": "internal/handler/handler.go",
+        "line": 137,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:143:if",
+        "file": "internal/handler/handler.go",
+        "line": 143,
+        "function": "ServeHTTP",
+        "kind": "if",
+        "condition": "err != nil",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:156:if",
+        "file": "internal/handler/handler.go",
+        "line": 156,
+        "function": "parseID",
+        "kind": "if",
+        "condition": "len(raw) == 0 || raw[0] < '1' || raw[0] > '9'",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:160:if",
+        "file": "internal/handler/handler.go",
+        "line": 160,
+        "function": "parseID",
+        "kind": "if",
+        "condition": "c < '0' || c > '9'",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      },
+      {
+        "id": "internal/handler/handler.go:165:if",
+        "file": "internal/handler/handler.go",
+        "line": 165,
+        "function": "parseID",
+        "kind": "if",
+        "condition": "err != nil || id > 2147483647",
+        "outcomes": [
+          "true",
+          "false"
+        ],
+        "executed": [
+          "true",
+          "false"
+        ],
+        "missing": []
+      }
+    ],
+    "passed": true
+  },
+  "load": {
+    "S01": {
+      "checks": {
+        "database": true,
+        "N>=2940": true,
+        "N/60>=49": true,
+        "all_thresholds": true
+      },
+      "requests": 3001,
+      "N201": 0,
+      "rps_over_60s": 50.016666666666666,
+      "p95_ms": 0.726798,
+      "sql_values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sql_expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sqlite_bytes": 12288
+    },
+    "S02": {
+      "checks": {
+        "database": true,
+        "N>=2940": true,
+        "N/60>=49": true,
+        "all_thresholds": true
+      },
+      "requests": 3001,
+      "N201": 3001,
+      "rps_over_60s": 50.016666666666666,
+      "p95_ms": 0.898533,
+      "sql_values": [
+        3001,
+        3001,
+        1,
+        3001,
+        3001
+      ],
+      "sql_expected": [
+        3001,
+        3001,
+        1,
+        3001,
+        3001
+      ],
+      "sqlite_bytes": 90112
+    }
+  },
+  "load_origin": "verification; same application/test/dependency hashes; reference resource limits unconfirmed",
+  "acceptance": {
+    "pass": 85,
+    "fail": 0,
+    "blocked": 2,
+    "not_run": 0,
+    "percent": 97.70114942528735,
+    "requirements_confirmed": 8,
+    "requirements_total": 9
+  },
+  "missing": [
+    "ФИО автора, группа, место оформления",
+    "ФИО, подпись и дата утверждения проверяющего",
+    "S01/S02 на подтвержденном опорном стенде либо предварительное согласование другого стенда"
+  ],
+  "hardware": {
+    "cpu": "Intel Core i5-1155G7 @ 2.50GHz",
+    "physical_cores": 4,
+    "logical_cpus": 8,
+    "ram_bytes": 16550572032,
+    "database_filesystem": "ext4",
+    "disk_model": "511BS0512HB",
+    "disk_type": "NVMe SSD",
+    "reference_load_limits_verified": false
+  },
+  "checks": {
+    "make test test-security vet branches build": {
+      "exit_code": 0
+    },
+    "npm run typecheck": {
+      "exit_code": 0
+    },
+    "npm test (after server build, outside isolated sandbox)": {
+      "exit_code": 0
+    },
+    "race_reports": 0
+  },
+  "application_nonempty_go_lines": {
+    "cmd/tasks/main.go": 50,
+    "internal/model/task.go": 13,
+    "internal/service/service.go": 56,
+    "internal/repository/sqlite.go": 106,
+    "internal/handler/handler.go": 160,
+    "total": 385
+  },
+  "go_cases": [
+    {
+      "Time": "2026-11-15T22:25:48.554273865+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU01Create",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.554332829+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU02TitleBoundaries/lower",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.55448953+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU02TitleBoundaries/upper",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.554661216+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU02TitleBoundaries/empty",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.554808071+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU02TitleBoundaries/spaces",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.554961858+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU02TitleBoundaries/too_long",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.555115757+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU02TitleBoundaries/bad_utf8",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.555416836+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Complete/1",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.555593225+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Complete/2147483647",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.555741129+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Complete/0",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.555895476+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Complete/-1",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.556076642+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Complete/2147483648",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.556235818+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Delete/1",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.556468879+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Delete/2147483647",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557751954+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Delete/0",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557774682+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Delete/-1",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.55779745+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU03IDBoundaries/Delete/2147483648",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557844708+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU04List/ordered",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557867022+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU04List/empty",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557888674+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU04List/nil",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557938052+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU05RepositoryErrors/Create/storage",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557960918+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU05RepositoryErrors/List/storage",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.557983748+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU05RepositoryErrors/Complete/storage",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.558009201+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU05RepositoryErrors/Complete/not_found",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.558041295+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU05RepositoryErrors/Delete/storage",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:48.558066046+03:00",
+      "Package": "example.com/tasks/internal/service",
+      "Test": "TestU05RepositoryErrors/Delete/not_found",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.302879637+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI01RepositoryCreateList",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.305729144+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI02ServiceCompleteDelete",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.307646527+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI07SchemaAndStorageFailures/checks",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.309207098+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI07SchemaAndStorageFailures/autoincrement",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.310661624+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI07SchemaAndStorageFailures/missing_complete",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.311344304+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI07SchemaAndStorageFailures/open_failure",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.313639082+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI07SchemaAndStorageFailures/drop_table",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.316275553+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI07SchemaAndStorageFailures/rollback_update",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.318398122+03:00",
+      "Package": "example.com/tasks/internal/repository",
+      "Test": "TestI07SchemaAndStorageFailures/scan_failure",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.450347451+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI03HTTPTaskLifecycle",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-11-15T22:25:50.453188007+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/empty",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.455854747+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/too_long",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.458418852+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/malformed",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.460932322+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/null_title",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.463642592+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/number",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.466167444+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/missing",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.469057477+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/unknown",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.47226862+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/second",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.474771812+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/media",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.477220623+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/missing_id",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.479401868+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/method",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.481299685+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/route",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.48296677+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/id_0",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.484819107+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/id_-1",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.48647038+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/id_01",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.48799273+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/id_abc",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.489357703+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI04HTTPInputFailures/id_2147483648",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.490956792+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI05ClosedDatabase/GET",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.492471646+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI05ClosedDatabase/POST",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.494066967+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI05ClosedDatabase/PATCH",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.495718991+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI05ClosedDatabase/DELETE",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.498488771+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/html",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.499547495+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/0",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.500443806+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/1",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.501309304+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/2",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.502182089+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/3",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.503036528+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/4",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.503955141+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/5",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.504862671+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/6",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.505736837+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/7",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.506644537+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/8",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.507595414+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/9",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.508499707+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/10",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.509511888+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/11",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.510730611+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/12",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.511955792+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/13",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.513039715+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/14",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.514061512+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/15",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.515084207+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/charset_utf8",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.516044428+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI06TransportEdges/page_storage",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-11-15T22:25:50.526036605+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestI08ConcurrentHTTP",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-11-15T22:25:54.989528148+03:00",
+      "Package": "example.com/tasks/internal/handler",
+      "Test": "TestS03SQLInjection",
+      "Elapsed": 0.01
+    }
+  ]
+}
