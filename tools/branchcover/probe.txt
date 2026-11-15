@@ -1,0 +1,23 @@
+package branchprobe
+
+import (
+ "encoding/json"
+ "fmt"
+ "os"
+ "path/filepath"
+ "sync"
+)
+var mutex sync.Mutex
+func record(id,outcome string) {
+ mutex.Lock();defer mutex.Unlock()
+ directory:=os.Getenv("BRANCH_DIR")
+ if directory=="" {panic("BRANCH_DIR is required in diagnostic build")}
+ file,err:=os.OpenFile(filepath.Join(directory,fmt.Sprintf("%d.jsonl",os.Getpid())),os.O_WRONLY|os.O_CREATE|os.O_APPEND,0600)
+ if err!=nil {panic(err)}
+ defer file.Close()
+ if err:=json.NewEncoder(file).Encode(map[string]string{"id":id,"outcome":outcome});err!=nil {panic(err)}
+}
+func Test(id string,value bool) bool {
+ record(id,fmt.Sprint(value));return value
+}
+func Case(id string) {record(id,"taken")}

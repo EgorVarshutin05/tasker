@@ -1,0 +1,1122 @@
+\documentclass[12pt,a4paper]{extarticle}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{caption}
+\captionsetup[longtable]{labelsep=endash,justification=raggedright,
+  singlelinecheck=false,font=normalsize}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks,unicode]{hyperref}
+
+\urlstyle{tt}
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\struct}[1]{%
+  \clearpage\begingroup
+  \titlespacing*{\section}{0pt}{0pt}{18pt}%
+  \section*{\centering #1}\endgroup%
+  \addcontentsline{toc}{section}{#1}}
+\newcommand{\mainsection}[1]{\clearpage\section{#1}}
+\titleformat{\section}{\normalfont\normalsize}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\normalsize}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize}{\thesubsubsection}{1em}{}
+\titlespacing*{\section}{\parindent}{0pt}{18pt}
+\titlespacing*{\subsection}{\parindent}{18pt}{12pt}
+\titlespacing*{\subsubsection}{\parindent}{12pt}{6pt}
+\setcounter{tocdepth}{2}
+\setlist{nosep,leftmargin=1.25cm}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{\fill}
+\setlength{\LTcapwidth}{\textwidth}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\contentsname}{СОДЕРЖАНИЕ}
+\renewcommand{\tablename}{Таблица}
+\AtBeginDocument{\renewcommand{\thetable}{\arabic{table}}}
+\lstdefinelanguage{Go}{%
+  morekeywords={package,import,func,type,struct,interface,return,if,else,for,range,var,const,nil,true,false,string,int,int64,bool},%
+  sensitive=true,morecomment=[l]{//},morestring=[b]"}
+\lstset{language=Go,basicstyle=\ttfamily\small,
+  keywordstyle=\color{black},commentstyle=\color{black!65},
+  stringstyle=\color{black},extendedchars=true,inputencoding=utf8,
+  columns=fullflexible,keepspaces=true,showstringspaces=false,
+  breaklines=true,breakatwhitespace=false,tabsize=4,
+  frame=single,rulecolor=\color{black},numbers=none}
+\emergencystretch=3em
+\widowpenalty=10000
+\clubpenalty=10000
+\pagestyle{plain}
+
+% Six attributes: the first appears in the heading, five in the table.
+\newcommand{\testcase}[6]{%
+  \par\addvspace{12pt}\noindent #1\par\nopagebreak
+  \begin{longtable}{|P{0.22\textwidth}|P{0.72\textwidth}|}
+  \hline
+  Тип теста & #2 \\ \hline
+  Объект & #3 \\ \hline
+  Входные данные & #4 \\ \hline
+  Косвенные входные данные & #5 \\ \hline
+  Ожидаемый результат и проверка & #6 \\ \hline
+  \end{longtable}}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+Учебный проект по тестированию программного обеспечения\par
+\vfill
+ПЛАН ТЕСТИРОВАНИЯ\par
+веб-приложения «Задачи» на языке Go\par
+\vspace{1cm}
+Версия плана: 1.0\par
+Состояние: до реализации приложения и выполнения тестов\par
+\vfill
+\begin{flushright}
+Исполнитель: \underline{\hspace{5cm}}\\[6pt]
+Группа: \underline{\hspace{5cm}}\\[6pt]
+Проверяющий: \underline{\hspace{5cm}}
+\end{flushright}
+\vfill
+\underline{\hspace{4cm}}\par
+2026
+\end{titlepage}
+\setcounter{page}{2}
+\hypersetup{pageanchor=true}
+
+\struct{РЕФЕРАТ}
+Объект планируемого исследования --- однопользовательское веб-приложение
+«Задачи». Цель документа --- задать воспроизводимые проверки до написания
+приложения и определить критерии его приемки. Устанавливаются контракты
+HTTP API, бизнес-правила, схема хранения и идентификаторы элементов интерфейса.
+Предусмотрены блочные, интеграционные, аттестационные, нагрузочные проверки,
+а также проверки SQL-инъекций и XSS.
+
+Документ содержит шесть нумерованных разделов и 20 спецификаций тестов:
+по пять на каждый уровень. Параметризованные спецификации содержат несколько
+обязательных наборов данных. Журналы и показатели разделов 4--6 оставлены
+для заполнения после проведения тестирования. Числа в критериях являются
+плановыми порогами, а не результатами измерений.
+
+Ключевые слова: Go, SQLite, HTTP API, сервис задач, тестирование,
+покрытие операторов, покрытие ветвей, аттестация.
+
+\clearpage
+\begingroup
+\titleformat{\section}{\normalfont\normalsize\centering}{}{0pt}{}
+\titlespacing*{\section}{0pt}{0pt}{18pt}
+\tableofcontents
+\endgroup
+
+\struct{ВВЕДЕНИЕ}
+Приложение предназначено для ведения небольшого личного списка задач
+на локальном компьютере. Пользователь создает задачу, просматривает список,
+отмечает задачу выполненной и удаляет запись. Один сервер обслуживает один
+общий список; учетных записей и разграничения доступа нет.
+
+План является основанием для последующей реализации. Изменение интерфейса,
+бизнес-правила или кода ответа требует изменения версии плана и связанных
+проверок. Предполагаемый объем прикладного кода Go --- 300--500 непустых строк
+без тестов, зависимостей, HTML и JavaScript. Это ограничение проекта,
+а не измеренный объем существующей программы.
+
+Оформление ориентировано на ГОСТ 7.32-2001 с изменением №~1;
+параметры задания: A4, 12 пт, полуторный интервал, поля 30/15/20/20 мм,
+абзац 1,25 см. Используется именно указанная в задании редакция стандарта.
+Документ собирается командой \code{pdflatex task_test_plan.tex} дважды
+для формирования содержания; внешние файлы, BibTeX и shell-escape не нужны.
+
+\mainsection{Объект тестирования}
+\subsection{Назначение и состав приложения}
+«Задачи» --- серверное приложение с HTML-страницей по адресу
+\url{http://127.0.0.1:8080/}. Сервер использует Go, \code{net/http},
+\code{encoding/json}, \code{html/template}, \code{database/sql}.
+Хранилище --- файловая SQLite с драйвером
+\code{github.com/mattn/go-sqlite3}; сборка требует CGO и компилятора C.
+Страница содержит форму создания и таблицу задач; JavaScript вызывает API
+через \code{fetch}. Начальные записи выводятся шаблоном, последующие изменения
+DOM --- через \code{textContent}, без вставки названия через \code{innerHTML}.
+
+Сервер слушает только \code{127.0.0.1:8080}. Сетевой доступ других компьютеров,
+публикация в Интернете и режим нескольких пользователей не входят в проект.
+Файл БД задается параметром \code{DB_PATH}; при отсутствии файла создается
+схема, при следующем запуске существующие записи сохраняются.
+
+\subsection{Данные и бизнес-правила}
+Модель \code{model.Task} имеет поля \code{ID int64}, \code{Title string},
+\code{Done bool}; JSON-имена: \code{id}, \code{title}, \code{done}.
+Других полей в ответе задачи нет.
+
+\begin{enumerate}
+\item Название сначала обрабатывается \code{strings.TrimSpace}.
+Затем проверяются UTF-8 и длина \code{utf8.RuneCountInString}:
+$1\leq L\leq100$. Единица длины --- кодовая точка Unicode,
+а не байт и не визуальный графемный кластер. Внутренние пробелы сохраняются.
+Одинаковые названия разрешены. HTML и SQL в названии хранятся как текст.
+\item ID --- целое $I\in[1;2147483647]$. В URL используется десятичная
+запись без знака, пробелов и ведущих нулей. Значения \code{0}, \code{-1},
+\code{01}, \code{abc}, \code{2147483648} отклоняются до вызова репозитория.
+Автоматический ID БД не переиспользуется после удаления.
+\item Новая задача получает \code{Done=false}.
+Отметка выполнения устанавливает \code{Done=true}; повторная отметка
+возвращает ту же задачу с \code{Done=true}. Обратного переключения нет.
+\item Список отсортирован по \code{id ASC}; пустой список --- JSON-массив
+\code{[]}, а не \code{null}. Удаление существующей записи физическое;
+повторное удаление возвращает признак отсутствия записи.
+\item При отказе проверки ввода репозиторий не вызывается.
+Сбой хранилища не раскрывает клиенту путь файла, SQL или текст драйвера.
+\end{enumerate}
+
+Схема и запросы будущего репозитория:
+\begin{lstlisting}[language=SQL]
+CREATE TABLE IF NOT EXISTS tasks (
+  id INTEGER PRIMARY KEY AUTOINCREMENT
+     CHECK (id BETWEEN 1 AND 2147483647),
+  title TEXT NOT NULL CHECK (length(title) BETWEEN 1 AND 100),
+  done INTEGER NOT NULL DEFAULT 0 CHECK (done IN (0, 1))
+);
+-- Values are passed as database/sql arguments.
+INSERT INTO tasks(title, done) VALUES (?, 0);
+SELECT id, title, done FROM tasks ORDER BY id ASC;
+UPDATE tasks SET done = 1 WHERE id = ?;
+DELETE FROM tasks WHERE id = ?;
+\end{lstlisting}
+
+Проверка Unicode выполняется сервисом; ограничение SQLite служит
+дополнительным барьером и не заменяет правила сервиса.
+Для SQLite устанавливаются \code{SetMaxOpenConns(1)},
+\code{PRAGMA busy_timeout=5000}, \code{PRAGMA journal_mode=WAL}.
+Метод завершения выполняет UPDATE и SELECT в одной транзакции,
+возвращает задачу после фиксации. Нулевое число затронутых строк у UPDATE
+или DELETE преобразуется в \code{ErrNotFound}.
+
+\subsection{Контракт HTTP и пользовательского интерфейса}
+В таблице~\ref{tab:api} задан транспортный контракт.
+У POST заголовок \code{Content-Type: application/json}; параметр
+\code{charset=utf-8} допускается. JSON содержит только строковое поле
+\code{title}; отсутствующее поле, \code{null}, иной тип, лишнее поле,
+поврежденный JSON и второе JSON-значение дают \code{400 bad_json}.
+Декодер использует запрет неизвестных полей и проверку EOF после первого
+значения. PATCH и DELETE отправляются без тела.
+
+\begin{longtable}{|P{43mm}|P{30mm}|P{79mm}|}
+\caption{Контракт API}\label{tab:api}\\\hline
+Метод и путь & Код & Тело и действие \\\hline\endfirsthead
+\multicolumn{3}{l}{Продолжение таблицы \thetable}\\\hline
+Метод и путь & Код & Тело и действие \\\hline\endhead
+POST \code{/api/tasks} & 201 & Объект задачи; например,
+\code{{"id":1,"title":"Отчет","done":false}} \\\hline
+GET \code{/api/tasks} & 200 & Массив объектов задач по \code{id ASC} \\\hline
+PATCH \code{/api/tasks/1/done} & 200 &
+\code{{"id":1,"title":"Отчет","done":true}} \\\hline
+DELETE \code{/api/tasks/1} & 204 & Тело длиной 0 байт \\\hline
+\end{longtable}
+
+Все ответы с JSON имеют \code{Content-Type: application/json; charset=utf-8}.
+Сравнение JSON выполняется после декодирования: порядок ключей,
+пробелы и завершающий перевод строки не учитываются; набор ключей,
+типы и значения должны совпасть. Для DELETE 204 заголовок Content-Type
+не проверяется. Страница GET / возвращает 200 и
+\code{text/html; charset=utf-8}.
+
+Тело отказа имеет ровно одно поле: \code{{"error":"код"}}.
+Соответствия: \code{ErrTitle} --- 400 и \code{title_length};
+\code{ErrID} --- 400 и \code{bad_id}; \code{ErrNotFound} --- 404 и
+\code{not_found}; \code{ErrStorage} --- 500 и \code{storage}.
+Неподдерживаемый Content-Type у POST дает 415 и \code{media_type}.
+Метод PUT на \code{/api/tasks} дает 405 и \code{method},
+\code{Allow: GET, POST}. Неизвестный путь \code{/api/unknown}
+дает 404 и \code{route}. Для ошибок запроса действует порядок:
+маршрут/метод, Content-Type, JSON, бизнес-правила, хранилище.
+
+На странице заданы \code{\#title-input}, \code{\#create-button},
+\code{\#error-banner}, \code{\#tasks-body}. Строка задачи имеет
+\code{data-id="1"}; ячейки --- классы \code{title}, \code{status};
+кнопки --- \code{.done-button}, \code{.delete-button}.
+Текст статуса: «Не выполнена» или «Выполнена».
+Кнопка завершения блокируется после \code{Done=true}.
+Перед запросом баннер очищается. При ответе 400 с \code{title_length}
+баннер содержит ровно «Название: от 1 до 100 символов»;
+при 500 с \code{storage} --- «Хранилище недоступно».
+После создания поле ввода очищается, строка появляется в таблице.
+После удаления строка отсутствует. Обновление DOM завершается не позднее
+2 с после получения ответа; в Playwright применяются ожидания состояния,
+а не фиксированные паузы.
+
+\subsection{Рамки и функциональные требования}
+Включаются исходный прикладной код, HTML/JS, HTTP-контракт, SQL-запросы,
+отображение ошибок, сохранение после перезапуска и защита точек ввода.
+Не проверяются внутренние алгоритмы стандартной библиотеки Go,
+драйвера, SQLite и браузера; их совместная работа с приложением проверяется.
+Исключаются аутентификация, роли, TLS, облачное развертывание, резервное
+копирование, мобильная верстка, доступность и произвольные уровни нагрузки.
+
+\begin{longtable}{|P{12mm}|P{30mm}|P{65mm}|P{43mm}|}
+\caption{Функциональности и участие в аттестации}\\\hline
+ID & Название & Проверяемое требование & Аттестация и обоснование \\\hline\endfirsthead
+\multicolumn{4}{l}{Продолжение таблицы \thetable}\\\hline
+ID & Название & Проверяемое требование & Аттестация и обоснование \\\hline\endhead
+F01 & Создание & Название сохраняется после TrimSpace; ID в заданном
+диапазоне, Done=false & Да: A01, основной ввод пользователя \\\hline
+F02 & Просмотр & Все записи по ID ASC, пустой список [] & Да: A02,
+наблюдаемый список \\\hline
+F03 & Завершение & Done=true; повтор не меняет запись & Да: A03,
+изменение состояния \\\hline
+F04 & Удаление & Строка исчезает из БД и страницы & Да: A04,
+завершение жизненного цикла \\\hline
+F05 & Проверки и отказы & Ограничения названия/ID; коды HTTP и баннеры
+по контракту & Да: A01, A04, A05, наблюдаемые отказы \\\hline
+F06 & Долговременное хранение & Задача и Done сохраняются после
+остановки процесса и открытия того же файла & Да: A03,
+пользователь продолжает работу \\\hline
+\end{longtable}
+
+Нефункциональные требования: N01 --- нагрузочные пороги S01--S02;
+N02 --- SQL остается данными в S03; N03 --- название не исполняется
+как HTML/JavaScript в S04--S05. Их проверяют специальные тесты.
+
+\mainsection{Стратегия тестирования}
+\subsection{Структура, связи и контракты слоев}
+\code{cmd/tasks/main.go} открывает БД, создает репозиторий, сервис,
+обработчики и HTTP-сервер; содержит только сборку зависимостей.
+Пакеты: \code{internal/model}, \code{internal/repository},
+\code{internal/service}, \code{internal/handler}, \code{web}.
+Последний содержит HTML-шаблон и JavaScript, встраиваемые в бинарный файл.
+
+Направление вызовов при изменении: браузер вызывает handler;
+handler вызывает service; service вызывает интерфейс Repository;
+SQLiteRepository вызывает database/sql и SQLite.
+При GET / обработчик получает список через тот же сервис и передает
+его в html/template. \code{model} импортируется слоями, но сам
+не зависит от них. Ни handler, ни web не выполняют SQL.
+
+Публичные контракты сервиса и репозитория:
+\begin{lstlisting}
+// internal/model
+// Task JSON tags are id, title, done.
+type Task struct {
+    ID int64 `json:"id"`
+    Title string `json:"title"`
+    Done bool `json:"done"`
+}
+
+// internal/service; imports context and internal/model.
+type Repository interface {
+    Create(context.Context, string) (model.Task, error)
+    List(context.Context) ([]model.Task, error)
+    Complete(context.Context, int64) (model.Task, error)
+    Delete(context.Context, int64) error
+}
+// Constructor: New(repo Repository) *Service
+// Methods of *Service:
+// Create(ctx context.Context, title string) (model.Task, error)
+// List(ctx context.Context) ([]model.Task, error)
+// Complete(ctx context.Context, id int64) (model.Task, error)
+// Delete(ctx context.Context, id int64) error
+\end{lstlisting}
+
+\code{ErrTitle}, \code{ErrID}, \code{ErrNotFound}, \code{ErrStorage}
+объявляются в model как переменные \code{errors.New}.
+При отказе методы, возвращающие Task, возвращают \code{model.Task{}}
+и ошибку, распознаваемую \code{errors.Is}; List возвращает
+\code{nil, err}. При отсутствии задач List возвращает срез \code{[]model.Task{}}
+и \code{nil}: \code{tasks != nil}, \code{len(tasks) == 0}.
+
+\begin{longtable}{|P{35mm}|P{60mm}|P{57mm}|}
+\caption{Участие структурных элементов в проверках}\\\hline
+Элемент & Уровни и объекты & Окружение или замена \\\hline\endfirsthead
+\multicolumn{3}{l}{Продолжение таблицы \thetable}\\\hline
+Элемент & Уровни и объекты & Окружение или замена \\\hline\endhead
+model & Структуры и ошибки используются всеми тестами;
+самостоятельной логики нет & Эталонные Task и errors.Is \\\hline
+service & Блочные U01--U05; интеграционные I02--I05;
+аттестационные A01--A05 & В U: ручная заглушка Repository \\\hline
+repository & Интеграционные I01--I05; косвенно A и S & Реальная SQLite
+в отдельном временном файле; драйвер database/sql \\\hline
+handler & Интеграционные I02--I05; аттестационные A01--A05 &
+httptest и настоящий сервис; при отказе БД --- закрытый sql.DB \\\hline
+web & Аттестационные A01--A05; специальные S04--S05 &
+Chromium, Playwright, настоящий сервер \\\hline
+cmd/tasks & Сборка зависимостей и перезапуск A03 &
+Отдельный процесс; без подмен слоев \\\hline
+Go, SQLite, ОС & Окружение всех уровней & Не оцениваются по покрытию
+прикладного кода \\\hline
+\end{longtable}
+
+\subsection{Блочное тестирование}
+Метод --- белый ящик для развилок сервиса и черный ящик для его
+публичного контракта. Классы названий: после TrimSpace длина 0,
+1--100 и более 100; дополнительно строка с байтом \code{0xff}.
+Границы: 0, 1, 100, 101. Классы ID: меньше 1, от 1 до верхней границы,
+выше верхней границы. Развилки репозитория: nil, ErrNotFound, ErrStorage.
+
+Инструменты: \code{testing}, табличные подтесты \code{t.Run}, ручные
+заглушки с подсчетом вызовов. Применение testify и генератора gomock
+для данного объема не требуется. Аналог require реализуется через
+\code{t.Fatalf}: сравниваются все поля Task, длины/элементы срезов,
+число вызовов, аргументы и \code{errors.Is}. Текст ошибки драйвера
+не является эталоном. У каждого подтеста собственная заглушка;
+реальная БД и HTTP не используются.
+
+\subsection{Интеграционное тестирование}
+Схема --- восходящая. Проверяются контракты между реальными слоями,
+SQL-параметры, фиксация изменений, JSON и отображение ошибок в HTTP.
+Последовательность:
+\begin{enumerate}
+\item Repository + database/sql + SQLite: I01.
+Драйвер теста вызывает методы напрямую; сервис и handler отсутствуют,
+заглушек нет.
+\item Service + Repository + SQLite: I02.
+Драйвер теста вызывает сервис и проверяет БД независимыми SELECT;
+handler отсутствует, заглушек нет.
+\item Handler + Service + Repository + SQLite: I03--I05.
+Драйверы --- \code{httptest.NewRequest}, \code{NewRecorder}
+и при сетевом запуске \code{httptest.NewServer}.
+В I05 после фикстуры вызывается \code{db.Close()}; это управляемый отказ
+реального соединения, а не замена репозитория моком.
+\end{enumerate}
+
+Каждый независимый вариант получает отдельный файл
+\code{filepath.Join(t.TempDir(), "tasks.db")}. Проверки выполняются
+последовательно. Фикстура F0 --- только что созданная пустая схема:
+таблица пуста, таблица \code{sqlite_sequence} не содержит строки tasks;
+первый INSERT получает ID=1. Фикстура F1 --- F0 плюс SQL:
+\begin{lstlisting}[language=SQL]
+INSERT INTO tasks(id,title,done)
+VALUES (1, CAST(X'D09ED182D187D0B5D182' AS TEXT), 0);
+\end{lstlisting}
+В SQL-листинге название «Отчет» задано UTF-8-байтами через hex-литерал;
+в листинге Go используется Unicode-escape.
+Данные других тестов не переносятся; операционный файл пользователя
+не открывается. Эталоны сверяются через database/sql на том же файле
+после завершения запроса, а не через методы проверяемого репозитория.
+
+\subsection{Аттестационное тестирование}
+Метод --- черный ящик: пользовательские сценарии через браузер
+и контроль API независимым HTTP-клиентом Playwright.
+Запускаются бинарный файл сервера, файловая SQLite и настоящий frontend;
+моки HTTP и Repository запрещены. \code{curl} может применяться для
+воспроизведения запросов; автоматизированный эталон --- Playwright.
+Перед каждым A-тестом создается F0 или F1 в отдельном каталоге.
+
+Playwright проверяет значения \code{textContent}, число DOM-узлов,
+\code{disabled}, URL запроса, статус и JSON сетевого ответа.
+Тайм-аут сетевого ожидания --- 5 с; DOM после ответа --- 2 с.
+В A03 процесс останавливается с ожиданием завершения не более 5 с,
+затем запускается с тем же \code{DB_PATH}. Старт подтверждается GET /api/tasks
+с кодом 200 в течение 5 с. Другие A-тесты используют новый файл.
+
+\subsection{Специальные виды тестов}
+\subsubsection{Нагрузка}
+Инструмент --- k6 с \code{constant-arrival-rate}, один запрос за итерацию,
+без sleep и повторных запросов. Отдельные прогоны чтения и записи
+описаны S01--S02. Прогрев 10 с выполняется отдельным прогоном и не
+включается в метрики; затем восстанавливается начальная фикстура.
+Для измерительного прогона: rate=50, timeUnit=1s, duration=60s,
+preAllocatedVUs=20, maxVUs=100. Плановое число запросов --- 3000.
+
+Пороги для каждого прогона: достигнутая скорость $N/60\geq49$ запросов/с,
+$N\geq2940$, \code{dropped_iterations=0},
+\code{p(95)<=200} мс для \code{http_req_duration}, число 5xx равно 0,
+\code{http_req_failed=0}, доля выполненных k6 checks равна 1.
+Каждый check проверяет код и JSON-схему, для записи также title и done.
+Число 5xx собирается отдельным Counter; отсутствие метрики с образцами
+трактуется как ноль только при подтвержденном $N\geq2940$.
+
+Опорный стенд: Linux x86-64, серверу доступны 2 логических CPU,
+2 ГиБ RAM, локальный SSD; генератор --- другой процесс на выделенных
+2 CPU того же хоста, общая RAM хоста не менее 8 ГиБ. Параллельные
+задачи сборки отключены. Перед прогоном фиксируются модель CPU,
+ОС, версии инструментов и размер БД. Пороги относятся к этому стенду;
+при смене ресурсов условия отдельно согласуются до прогона.
+
+\subsubsection{Безопасность}
+S03 проверяет параметризацию SQL: вредоносная строка хранится
+побайтово, таблица tasks остается доступной. S04 проверяет
+построение DOM после fetch; S05 --- HTML начальной загрузки через
+html/template. Перед навигацией Playwright через init-script
+задает \code{window.__xss=0}; после операций счетчик должен оставаться 0.
+Фиксируются также появление диалогов и неожиданных элементов.
+Проверяется отсутствие преобразования пользовательского текста в
+\code{template.HTML}. Это проверки конкретных точек ввода;
+они не являются заявлением об отсутствии всех классов уязвимостей.
+
+\subsection{Стенд, артефакты и оценивание отдельного теста}
+Базовый стек стенда: Go 1.23.x, \code{CGO_ENABLED=1}, SQLite через
+зафиксированный в go.mod драйвер, Chromium через Playwright, k6.
+Точные patch-версии Go, драйвера и встроенной SQLite, ОС, Node.js,
+Playwright, Chromium и k6 записываются до первого прогона.
+\code{go.sum} и lock-файл JavaScript сохраняются;
+во всех сравниваемых прогонах используются те же версии.
+
+Артефакты прогона: хеш коммита приложения, версия плана,
+команды, дата/время с часовым поясом, stdout/stderr Go,
+coverage.out, coverage.html, отчет Playwright с trace,
+сводка k6 в JSON и файл БД теста при дефекте.
+Статусы: PASS --- все сравнения данного набора совпали;
+FAIL --- хотя бы одно сравнение не совпало; BLOCKED --- проверка
+не выполнена из-за среды или зависимости; NOT RUN --- не запускалась.
+Ни один из этих статусов заранее не присваивается тестам.
+
+\subsection{Начало, окончание и переходы}
+\begin{enumerate}
+\item Начало блочного этапа: реализованы контракты подраздела 2.1,
+\code{go build ./...} завершается с кодом 0; U-тесты компилируются;
+зафиксированы версия плана, commit и зависимости.
+\item Блочное $\rightarrow$ интеграционное: все наборы U01--U05 имеют
+PASS; покрытие операторов service не ниже 90\%; обе стороны каждого
+условия проверки названия/ID и обработки ошибки Repository выполнены
+и отмечены в реестре ветвей; открытых блокирующих и критических дефектов 0.
+\item Интеграционное $\rightarrow$ аттестационное: все наборы I01--I05
+имеют PASS; общий порог покрытия подраздела~\ref{sec:coverage} достигнут;
+\code{go test -race ./internal/...} дает код 0 и 0 сообщений
+\code{DATA RACE}; открытых блокирующих и критических дефектов 0.
+\item Аттестационное $\rightarrow$ специальное: все наборы A01--A05
+имеют PASS на одном commit; F01--F06 покрыты аттестацией на 100\%;
+открытых блокирующих и критических дефектов 0.
+\item Окончание: все наборы U, I, A, S имеют PASS после последних
+изменений, пороги S01--S02 соблюдены, S03--S05 не фиксируют исполнения
+кода/SQL-команд из названий, выполнены критерии раздела 6.
+\end{enumerate}
+
+Один этап может содержать повторные запуски после исправлений.
+Изменение исходного кода аннулирует относящиеся к нему результаты;
+повторяются затронутые тесты и U/I-регрессия, затем A/S на итоговом commit.
+Перекрытие этапов для диагностики разрешено, но не заменяет критерий перехода.
+
+\subsection{Приостановка, возобновление и дефекты}
+Выполнение затронутого этапа приостанавливается при любом событии:
+сборка завершилась с ненулевым кодом; создание/открытие тестовой БД
+или \code{PingContext} с тайм-аутом 2 с вернуло error;
+сервер завершился вне команды теста; GET /api/tasks недоступен
+три раза подряд с интервалом 1 с; обнаружено изменение файла
+вне временного каталога; базовая операция создания теряет запись;
+свободное место стало менее 1 ГиБ. Запланированный \code{db.Close()}
+в I05 и перезапуск A03 не считаются сбоем среды.
+
+Возобновление: причина устранена; сборка имеет код 0;
+на новой F0 два последовательных контрольных цикла
+POST «Контроль» $\rightarrow$ GET $\rightarrow$ DELETE возвращают
+201, 200, 204, JSON содержит созданную задачу, а SELECT после DELETE
+возвращает COUNT(*)=0. Полученные ID берутся из POST, поскольку
+после первого цикла следующий ID уже не равен 1.
+Заблокированные и затронутые тесты запускаются заново.
+
+Блокирующий дефект: сервер не запускается или тесты не могут
+продолжаться. Критический: потеря/изменение чужой записи, выполнение
+внедренного SQL/JavaScript, нарушение F01--F04 без обходного пути.
+Существенный: нарушение иного контракта без потери данных.
+Незначительный: оформление при сохранении контрактов и возможности работы.
+Классификация записывается в описании дефекта, а не выводится из кода HTTP.
+
+\mainsection{Детальный план тестов}
+\subsection{Общие данные и порядок выполнения}
+Префиксы U, I, A, S обозначают блочные, интеграционные,
+аттестационные и специальные проверки. Цель и ID составляют
+первый атрибут каждой спецификации; остальные пять атрибутов
+приведены в ее таблице. Все перечисленные варианты обязательны.
+Каждый параметризованный вариант независим, если явно не задана
+последовательность действий внутри одного сценария.
+
+T100 --- строка из ровно 100 ASCII-букв A, T101 --- из 101 буквы A.
+Их точные литералы (перенос при печати не является частью строки):
+\begin{quote}\raggedright
+T100 = \code{AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}\par
+T101 = \code{AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}
+\end{quote}
+Для U/I контекст --- \code{context.Background()}, если не указано иное.
+У A/S используется origin \url{http://127.0.0.1:8080};
+сессий и Cookie нет. У JSON-запросов POST по умолчанию задан
+\code{Content-Type: application/json}; у GET --- тело отсутствует.
+Для каждого теста с F0/F1 применяется новый файл БД.
+Нормы $L$ и $I$ определены в подразделе 1.2 и действуют во всех тестах.
+
+\subsection{Блочные тесты}
+\testcase{U01. Цель: создание передает нормализованное название репозиторию (F01)}
+{Общий}
+{\code{service.(*Service).Create}}
+{\code{title="  Отчет  "}; после TrimSpace L=5, диапазон 1--100.}
+{Заглушка Create при аргументе «Отчет» возвращает
+\code{Task{ID:1, Title:"Отчет", Done:false}, nil}; остальные методы
+не вызываются. БД отсутствует.}
+{Возвращены именно указанный Task и \code{err==nil}; Create вызван
+один раз с побайтовой строкой «Отчет». Проверка через testing:
+сравнение полей, строки аргумента и счетчика вызовов.}
+
+\testcase{U02. Цель: проверить границы названия и UTF-8 (F01, F05)}
+{Краевой; варианты с длиной вне диапазона и байтом 0xff --- негативные}
+{\code{service.(*Service).Create}}
+{Отдельные наборы: \code{"Я"} (L=1), T100 (L=100),
+\code{""} (L=0), \code{"   "} (после TrimSpace L=0), T101 (L=101),
+\code{string([]byte{0xff})} (не UTF-8). Допуск: UTF-8, L=1--100.}
+{Новая заглушка для каждого набора. Для «Я» и T100 Create возвращает
+Task с ID=1, тем же названием, Done=false и nil.
+Для остальных наборов вызов заглушки запрещен.}
+{Для первых двух: Task с указанными полями, nil, счетчик Create=1.
+Для остальных: \code{Task{}}, \code{errors.Is(err,model.ErrTitle)==true},
+счетчик=0. Все шесть наборов сравниваются в t.Run.}
+
+\testcase{U03. Цель: границы ID и запрет обращения к данным при выходе из диапазона (F03--F05)}
+{Краевой и негативный}
+{\code{service.(*Service).Complete}, \code{Delete}}
+{Каждый метод с ID=1, 2147483647, 0, -1, 2147483648;
+допуск I=1--2147483647.}
+{Для каждого метода/ID новая заглушка: Complete при ID в диапазоне
+возвращает \code{Task{ID:id,Title:"Отчет",Done:true},nil};
+Delete возвращает nil. При ID вне диапазона методы заглушки запрещены.}
+{ID в диапазоне: Complete возвращает заданный Task и nil,
+Delete --- nil, соответствующий счетчик=1 и аргумент равен ID.
+Вне диапазона: Complete дает Task{} и ErrID через errors.Is;
+Delete дает ErrID через errors.Is; все счетчики=0. Проверка testing.}
+
+\testcase{U04. Цель: сохранить порядок списка и представить отсутствие записей срезом длины 0 (F02)}
+{Общий и краевой}
+{\code{service.(*Service).List}}
+{Вызов List без фильтра и параметров.}
+{Три независимых возврата заглушки:
+\code{[]Task{{ID:1,Title:"А",Done:false},{ID:2,Title:"Б",Done:true}},nil};
+\code{[]Task{},nil}; \code{nil,nil}. БД отсутствует.}
+{Первый набор: ровно две структуры в том же порядке, err=nil.
+Второй и третий: \code{tasks!=nil}, \code{len(tasks)==0}, err=nil.
+List заглушки вызван один раз. Поля и порядок сравниваются через testing.}
+
+\testcase{U05. Цель: передать классификацию отказа Repository без данных Task (F05)}
+{Негативный}
+{Create, List, Complete, Delete сервиса}
+{Create с «Отчет» (L=5); List без аргументов; Complete и Delete
+с ID=9 (в диапазоне).}
+{Независимые наборы: все четыре метода заглушки возвращают
+\code{model.ErrStorage}; дополнительно Complete и Delete возвращают
+\code{model.ErrNotFound}. Структура при отказе --- Task{}, список --- nil.}
+{Для шести наборов errors.Is с заданной ошибкой равен true.
+Create/Complete возвращают Task{}; List возвращает nil;
+у Delete только error. Вызван ровно один соответствующий метод;
+остальные счетчики=0. Сверка testing и errors.Is.}
+
+\subsection{Интеграционные тесты}
+\testcase{I01. Цель: запись и чтение через настоящий драйвер SQLite (F01, F02)}
+{Общий и краевой}
+{\code{repository.(*SQLiteRepository).Create}, \code{List}}
+{Сначала List; затем Create с «Отчет» (L=5); затем List.
+Длина названия в диапазоне 1--100.}
+{F0; настоящий database/sql; заглушек нет.}
+{Первый List: []Task{} и nil. Create:
+\code{Task{ID:1,Title:"Отчет",Done:false}}, nil.
+Второй List: срез из этого Task и nil.
+Независимый \code{SELECT id,title,done FROM tasks ORDER BY id}
+через database/sql возвращает ровно (1, «Отчет», 0);
+\code{SELECT COUNT(*) FROM tasks} дает 1.
+Строка title сравнивается побайтово.}
+
+\testcase{I02. Цель: завершение повторяемо, удаление физическое (F03--F05)}
+{Общий и негативный}
+{Service + SQLiteRepository: Complete, Delete}
+{Последовательно Complete(1), Complete(1), Delete(1), Delete(1).
+ID=1 в диапазоне.}
+{F1; настоящие сервис, репозиторий и БД, заглушек нет.}
+{Оба Complete: \code{Task{ID:1,Title:"Отчет",Done:true}}, nil;
+после каждого SELECT done WHERE id=1 дает 1 и COUNT(*)=1.
+Первый Delete: nil, COUNT(*)=0. Второй: ErrNotFound через errors.Is,
+COUNT(*) остается 0. SELECT и сравнения выполняет тест через database/sql.}
+
+\testcase{I03. Цель: пройти HTTP-контракт жизненного цикла (F01--F04)}
+{Общий}
+{Полный стек; POST/GET/PATCH/DELETE из таблицы~\ref{tab:api}}
+{POST \code{/api/tasks} с \code{{"title":"Отчет"}} (L=5);
+GET списка; PATCH \code{/api/tasks/1/done}; DELETE \code{/api/tasks/1};
+GET списка. Тела PATCH/DELETE пусты, ID=1.}
+{F0; настоящий handler/service/repository;
+запросы подаются через httptest.NewRecorder; Cookie нет.}
+{Коды по порядку: 201, 200, 200, 204, 200.
+Тела: Task(1,«Отчет»,false); массив из него;
+Task(1,«Отчет»,true); 0 байт; [].
+Проверка JSON и Content-Type по подразделу 1.3;
+после DELETE независимый SELECT COUNT(*) дает 0.}
+
+\testcase{I04. Цель: отказы входного HTTP не изменяют БД (F05)}
+{Негативный и краевой}
+{POST /api/tasks; PATCH /api/tasks/\{id\}/done;
+маршрутизация PUT и неизвестного пути}
+{Отдельные POST-тела: \code{{"title":""}},
+\code{{"title":""}} с подстановкой T101 вместо пустой строки,
+\code{{"title":}, {"title":null}, {"title":7}, {},
+{"title":"А","extra":1}, {"title":"А"} {}}.
+Дополнительно POST с телом \code{{"title":"А"}} и
+\code{Content-Type: text/plain}.
+PATCH с каждым ID: \code{0}, \code{-1}, \code{01}, \code{abc},
+\code{2147483648}, \code{9}.
+PUT /api/tasks без тела; GET /api/unknown.
+Допуски: название L=1--100; ID и JSON по подразделам 1.2--1.3.}
+{Для каждого набора отдельная F1; реальные слои;
+кроме text/plain используется application/json.}
+{POST с пустой строкой/T101: 400 и \code{{"error":"title_length"}}.
+Шесть поврежденных/несоответствующих схеме JSON: 400 и
+\code{{"error":"bad_json"}}; text/plain: 415 и \code{media_type}.
+Пять ID вне синтаксиса/диапазона: 400 и \code{bad_id}; ID=9: 404 и \code{not_found}.
+PUT: 405 и method, Allow=GET, POST; неизвестный путь: 404 и route.
+Для каждого: JSON/Content-Type по 1.3, SQL возвращает только (1,«Отчет»,0),
+COUNT(*)=1. Проверки httptest и database/sql.}
+
+\testcase{I05. Цель: отказ БД преобразуется в HTTP 500 без служебных сведений (F05)}
+{Негативный}
+{Handler + Service + SQLiteRepository}
+{Отдельно GET /api/tasks; POST /api/tasks с
+\code{{"title":"Отчет"}} (L=5); PATCH /api/tasks/1/done;
+DELETE /api/tasks/1. ID=1.}
+{Для каждого набора создается F1, затем \code{db.Close()} возвращает nil;
+handler продолжает использовать этот закрытый sql.DB.}
+{Каждый ответ: 500, Content-Type по 1.3,
+после декодирования ровно \code{{"error":"storage"}}.
+Тело не содержит пути файла, текста SQL и сообщения \code{database is closed}.
+httptest сравнивает код и структуру JSON.
+Повторное открытие файла независимым sql.DB и SELECT подтверждают
+единственную строку (1,«Отчет»,0).}
+
+\subsection{Аттестационные тесты}
+\testcase{A01. Цель: создать задачу и показать отказ для пустого ввода (F01, F05)}
+{Общий и негативный}
+{Форма GET /; \#title-input, \#create-button, \#error-banner}
+{Открыть /, ввести «  Отчет  », нажать создание; затем ввести
+три ASCII-пробела и повторить. После TrimSpace длины 5 и 0,
+допуск L=1--100.}
+{F0; настоящий сервер; HTML-форма не блокирует отправку пробелов
+встроенной проверкой required. Cookie нет.}
+{Первый POST: 201, Task(1,«Отчет»,false).
+DOM: одна строка [data-id="1"], .title.textContent=«Отчет»,
+.status.textContent=«Не выполнена», input.value="".
+Второй POST: 400, \code{error=title_length};
+\#error-banner.textContent=«Название: от 1 до 100 символов».
+Число строк остается 1; SQL COUNT(*)=1 и title=«Отчет».
+Playwright проверяет ответ, DOM в течение 2 с и SQL через тестовый драйвер.}
+
+\testcase{A02. Цель: пустая страница и порядок записей совпадают с API (F02)}
+{Краевой и общий}
+{GET /; GET /api/tasks; \#tasks-body}
+{На F0 открыть / и получить список API.
+Затем через API создать \code{{"title":"Б"}},
+\code{{"title":"А"}} (L=1 у обоих), перезагрузить страницу.}
+{F0; отдельный настоящий сервер; обе записи создаются
+последовательно, без других запросов записи.}
+{До создания API: 200 и []; в \#tasks-body 0 строк.
+Два POST: 201 и Task(1,«Б»,false), Task(2,«А»,false).
+После перезагрузки API: 200 и массив этих двух задач в порядке ID 1,2;
+DOM имеет 2 строки в том же порядке и тексты «Б», «А».
+Проверка Playwright: массив data-id и textContent совпадает
+с эталонными массивами ["1","2"] и ["Б","А"].}
+
+\testcase{A03. Цель: завершенная задача сохраняется после остановки процесса (F03, F06)}
+{Общий}
+{.done-button; PATCH; процесс cmd/tasks; SQLite-файл}
+{На странице F1 нажать завершение ID=1; затем независимым HTTP-клиентом
+повторить PATCH /api/tasks/1/done без тела; остановить и запустить
+сервер с тем же \code{DB_PATH}; снова открыть /.}
+{F1; init и повторный старт по тайм-аутам подраздела 2.4;
+файл не удаляется и не заменяется; заглушек нет.}
+{Оба PATCH: 200 и Task(1,«Отчет»,true).
+После первого ответа .status.textContent=«Выполнена»,
+.done-button.disabled=true. После перезапуска GET списка: 200,
+массив из той же задачи; DOM содержит одну строку с ID=1,
+тем же названием, статусом и disabled=true.
+SQL SELECT id,title,done дает ровно (1,«Отчет»,1).
+Проверки Playwright, HTTP-клиент, database/sql.}
+
+\testcase{A04. Цель: удаление отражается в UI, API и БД (F04, F05)}
+{Общий и негативный}
+{.delete-button; DELETE /api/tasks/1; GET списка}
+{На F1 нажать удаление ID=1; затем выполнить повторный
+DELETE /api/tasks/1 с пустым телом и GET /api/tasks. ID=1 в диапазоне.}
+{F1; настоящий сервер и браузер, Cookie нет.}
+{Первый DELETE: 204, 0 байт; DOM-строк с data-id="1" равно 0
+в течение 2 с после ответа. Повтор: 404 и \code{{"error":"not_found"}}.
+GET: 200 и []. SQL COUNT(*)=0.
+Проверка Playwright/HTTP-клиентом и независимым SQL.}
+
+\testcase{A05. Цель: показать пользователю отказ хранилища (F05)}
+{Негативный}
+{Форма создания, баннер, POST /api/tasks}
+{На открытой странице ввести «Отчет» (L=5),
+после подготовки отказа нажать создание.}
+{F0. После загрузки страницы отдельным sql.DB выполнить
+\code{DROP TABLE tasks}; это намеренная порча только тестового файла.
+Сервер и браузер не перезапускаются; HTTP не подменяется.}
+{POST: 500 и \code{{"error":"storage"}};
+\#error-banner.textContent=«Хранилище недоступно»;
+input.value=«Отчет», число строк в DOM=0.
+Playwright проверяет ответ/DOM; независимый запрос
+\code{SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='tasks'}
+дает 0. Отсутствие tasks не маскируется автоматическим созданием
+схемы в обработчике запроса. После теста файл удаляется.}
+
+\subsection{Специальные тесты}
+\testcase{S01. Цель: выдержать 50 запросов чтения в секунду (N01)}
+{Специальный, нагрузочный}
+{GET /api/tasks; весь сервер}
+{3000 плановых GET без тела за 60 с, 50 итераций/с,
+1 запрос/итерацию; режим и VU по подразделу 2.5.1.}
+{Пустая F0; отдельный опорный стенд; после прогрева файл вновь F0;
+Cookie нет, иных клиентов и операций записи нет.}
+{Каждый ответ: 200 и [], Content-Type по 1.3.
+Сводка k6: N>=2940, N/60>=49 RPS, p95<=200 мс,
+\code{dropped_iterations=0}, 5xx=0, \code{http_req_failed=0}, checks=1.
+SQL COUNT(*)=0. Сверка счетчиков/thresholds и JSON-сводки k6,
+независимый SELECT после прогона.}
+
+\testcase{S02. Цель: выдержать 50 операций создания в секунду без потери записей (N01, F01)}
+{Специальный, нагрузочный}
+{POST /api/tasks; весь сервер и файловая SQLite}
+{Каждый POST: \code{{"title":"Нагрузка"}} (L=8, допуск 1--100),
+application/json. 3000 плановых запросов за 60 с, режим S01.}
+{Новая F0 после прогрева; стенд как S01, Cookie нет.
+Названия-дубликаты разрешены; иных писателей нет.}
+{Каждый ответ: 201, поля ровно id/title/done,
+целый ID в диапазоне, title=«Нагрузка», done=false.
+Все пороги S01 по k6 соблюдены.
+Пусть N201 --- число ответов 201: SQL COUNT(*) и COUNT(DISTINCT id)
+равны N201; число строк с title='Нагрузка' AND done=0 также N201.
+MIN(id)=1, MAX(id)=N201 при отсутствии неудавшихся INSERT.
+Проверки k6 и независимыми SQL после завершения всех запросов.}
+
+\testcase{S03. Цель: SQL-фрагмент остается значением title (N02)}
+{Специальный, безопасность}
+{POST /api/tasks; Repository.Create; GET списка}
+{POST \code{{"title":"x'); DROP TABLE tasks;--"}}.
+Название содержит 24 ASCII-символа, L=24 в диапазоне 1--100.}
+{F1, настоящая SQLite; все SQL-значения передаются через параметры;
+Cookie нет.}
+{POST: 201, Task с ID=2, title точно равен переданной строке,
+done=false. \code{SELECT COUNT(*) FROM tasks} дает 2;
+\code{SELECT title FROM tasks WHERE id=2} совпадает со строкой побайтово;
+строка ID=1 остается (1,«Отчет»,0). GET списка: 200 и эти две задачи
+по ID ASC. Проверка HTTP-клиентом и database/sql.}
+
+\testcase{S04. Цель: вставка в DOM через fetch не исполняет обработчик HTML (N03)}
+{Специальный, безопасность}
+{Форма создания; динамическое обновление .title}
+{Ввести \code{<img src=x onerror=window.__xss=1>} (34 ASCII-символа,
+L=34 в диапазоне), нажать создание.}
+{F0; Playwright init-script задает \code{window.__xss=0} до загрузки;
+учитывается число dialog-событий, изначально 0.}
+{POST: 201, Task(1,переданный текст,false).
+.title.textContent побайтово равен строке ввода;
+\code{.title img} имеет count=0, \code{window.__xss=0},
+число dialog-событий=0. Playwright проверяет после появления строки
+и повторно спустя 500 мс наблюдения; SQL title WHERE id=1 совпадает
+с исходной строкой. Указанный интервал ограничивает область наблюдения.}
+
+\testcase{S05. Цель: начальный HTML экранирует сохраненный script (N03)}
+{Специальный, безопасность}
+{GET /; html/template; начальная .title}
+{До навигации POST \code{{"title":"<script>window.__xss=1</script>"}}
+(L=31, допуск 1--100), затем открыть / в новом контексте браузера.}
+{F0; POST создает ID=1; init-script до навигации задает \code{window.__xss=0};
+JavaScript страницы не должен заменять начальную таблицу до ее проверки.}
+{POST: 201 и Task с точным названием, false.
+GET /: 200 и HTML; HTML-парсер ответа видит в .title текст
+\code{<script>window.__xss=1</script>}, дочерних script=0.
+DOM после загрузки: та же строка, \code{.title script} count=0,
+\code{window.__xss=0}, dialogs=0; повтор наблюдения через 500 мс.
+Playwright и разбор HTML HTTP-ответа проверяют отдельно шаблон
+и состояние браузера; SQL title WHERE id=1 равен входной строке.}
+
+\subsection{Пример реализации блочного теста}
+Ниже приведено содержимое \code{internal/service/service_test.go}
+для модуля \code{example.com/tasks}. Фрагмент использует контракты
+подраздела 2.1: \code{service.New}, методы Repository и ошибки model.
+Он не требует testify или генерации моков. Приложение еще не реализовано;
+после реализации контрактов файл запускается командой
+\code{go test ./internal/service -run TestCreate -v}.
+Русское слово «Отчет» записано Unicode-escape, поэтому листинг ASCII.
+Листинг покрывает наборы U01/U02; U03--U05 реализуются отдельно
+до перехода к интеграционному этапу.
+
+\begin{lstlisting}
+package service_test
+
+import (
+    "context"
+    "errors"
+    "strings"
+    "testing"
+
+    "example.com/tasks/internal/model"
+    "example.com/tasks/internal/service"
+)
+
+type repoStub struct {
+    createCalls int
+    otherCalls int
+    gotTitle string
+}
+
+func (r *repoStub) Create(_ context.Context,
+    title string) (model.Task, error) {
+    r.createCalls++
+    r.gotTitle = title
+    return model.Task{ID: 1, Title: title, Done: false}, nil
+}
+func (r *repoStub) List(context.Context) ([]model.Task, error) {
+    r.otherCalls++
+    return nil, errors.New("unexpected List")
+}
+func (r *repoStub) Complete(context.Context,
+    int64) (model.Task, error) {
+    r.otherCalls++
+    return model.Task{}, errors.New("unexpected Complete")
+}
+func (r *repoStub) Delete(context.Context, int64) error {
+    r.otherCalls++
+    return errors.New("unexpected Delete")
+}
+
+func TestCreate(t *testing.T) {
+    const title = "\u041e\u0442\u0447\u0435\u0442"
+    cases := []struct {
+        name, input, stored string
+        wantErr error
+        wantCalls int
+    }{
+        {"trim", "  " + title + "  ", title, nil, 1},
+        {"lower", "\u042f", "\u042f", nil, 1},
+        {"upper", strings.Repeat("A", 100),
+            strings.Repeat("A", 100), nil, 1},
+        {"empty", "", "", model.ErrTitle, 0},
+        {"spaces", "   ", "", model.ErrTitle, 0},
+        {"too_long", strings.Repeat("A", 101),
+            "", model.ErrTitle, 0},
+        {"bad_utf8", string([]byte{0xff}),
+            "", model.ErrTitle, 0},
+    }
+    for _, tc := range cases {
+        t.Run(tc.name, func(t *testing.T) {
+            repo := &repoStub{}
+            svc := service.New(repo)
+            got, err := svc.Create(context.Background(), tc.input)
+            if !errors.Is(err, tc.wantErr) {
+                t.Fatalf("error: got %v, want %v", err, tc.wantErr)
+            }
+            want := model.Task{}
+            if tc.wantErr == nil {
+                want = model.Task{ID: 1, Title: tc.stored}
+            }
+            if got != want {
+                t.Fatalf("task: got %#v, want %#v", got, want)
+            }
+            if repo.createCalls != tc.wantCalls ||
+                repo.otherCalls != 0 || repo.gotTitle != tc.stored {
+                t.Fatalf("repo state: %#v", repo)
+            }
+        })
+    }
+}
+\end{lstlisting}
+
+\subsection{Покрытие и плановые значения}\label{sec:coverage}
+Покрытие операторов измеряется только для service, repository и handler:
+\begin{lstlisting}[language={}]
+go test -count=1 -covermode=atomic \
+  -coverpkg=./internal/service,./internal/repository,./internal/handler \
+  -coverprofile=coverage.out ./internal/...
+go tool cover -func=coverage.out
+go tool cover -html=coverage.out -o coverage.html
+\end{lstlisting}
+
+Пусть $s_i$ --- число операторов в инструментированном блоке профиля,
+$c_i$ --- счетчик исполнения этого блока. Тогда
+\[
+ C_{\mathrm{stmt}}=
+ \frac{\sum_i s_i\,\mathbf{1}[c_i>0]}{\sum_i s_i}\cdot100\%.
+\]
+План: $C_{\mathrm{stmt}}\geq85\%$ для трех пакетов в совокупности,
+отдельно service не ниже 90\%. model без исполняемой логики,
+cmd со сборкой зависимостей, тестовые файлы и внешние зависимости
+в знаменатель не входят. Их исключение явно сохраняется в отчете.
+
+\code{go test -coverprofile} не вычисляет покрытие ветвей.
+Для него после реализации составляется реестр с позицией в исходнике,
+условием, исходом true/false либо case/default, ID подтеста и отметкой
+исполнения. Выполнение исхода подтверждается трассировкой отладчика
+или временным счетчиком в диагностической сборке; счетчики не входят
+в поставляемую программу. Покрытие операторов двух блоков само по себе
+не доказывает покрытие всех составных логических условий.
+\[
+ C_{\mathrm{branch}}=
+ \frac{B_{\mathrm{executed}}}{B_{\mathrm{total}}}\cdot100\%.
+\]
+План: 100\% исходов проверок названия/ID и обработки результатов
+Repository в service; не ниже 80\% исходов во всех трех пакетах.
+Это покрытие решений; MC/DC и покрытие всех путей не заявляются.
+При отсутствии измерения ветвей записывается «Не измерено»,
+а не число из coverage.out. Итоговые числа вносятся только в раздел 6.
+
+Покрытие требований рассчитывается отдельно от кода:
+\[
+ C_{\mathrm{req}}=\frac{R_{\mathrm{linked}}}{R_{\mathrm{total}}}\cdot100\%,
+ \qquad
+ C_{\mathrm{req,pass}}=\frac{R_{\mathrm{passed}}}{R_{\mathrm{total}}}\cdot100\%.
+\]
+$R_{\mathrm{linked}}$ --- число требований с тестами, содержащими
+проверки всех их условий; $R_{\mathrm{passed}}$ --- число требований,
+для которых все связанные обязательные наборы имеют PASS.
+Знаменатель фиксирован: 6 функциональных и 3 нефункциональных,
+то есть $R_{\mathrm{total}}=9$. Плановое покрытие спецификациями ---
+9/9=100\%; это оценка полноты плана, а не результат выполнения.
+Для аттестации отдельно: 6/6=100\% по F01--F06.
+
+\begin{longtable}{|P{20mm}|P{63mm}|P{69mm}|}
+\caption{Матрица трассировки требований}\label{tab:trace}\\\hline
+Требование & U и I & A или S \\\hline\endfirsthead
+\multicolumn{3}{l}{Продолжение таблицы \thetable}\\\hline
+Требование & U и I & A или S \\\hline\endhead
+F01 & U01, U02, I01, I03 & A01 \\\hline
+F02 & U04, I01, I03 & A02 \\\hline
+F03 & U03, I02, I03 & A03 \\\hline
+F04 & U03, I02, I03 & A04 \\\hline
+F05 & U02, U03, U05, I02, I04, I05 & A01, A04, A05 \\\hline
+F06 & --- & A03 \\\hline
+N01 & --- & S01, S02 \\\hline
+N02 & --- & S03 \\\hline
+N03 & --- & S04, S05 \\\hline
+\end{longtable}
+
+Если измерение не достигает порога, добавляются тесты с ID,
+продолжающими последовательность своего уровня, и обновляется матрица.
+Порог не понижается задним числом. Ни 20 спецификаций, ни 100\% покрытия
+требований не являются доказательством отсутствия дефектов.
+
+\mainsection{Журнал тестирования (шаблон)}
+Заполняется после проведения тестирования.
+Одна строка относится к тесту или именованному параметризованному набору;
+повторные прогоны учитываются в количестве запусков. ID дефекта
+имеет вид BUG-001. Даты записываются с временем и часовым поясом
+в связанной записи прогона. Фактические статусы и артефакты сохраняются
+в отчете инструмента с тем же ID прогона.
+
+\begin{longtable}{|P{21mm}|P{23mm}|P{29mm}|P{24mm}|P{20mm}|P{29mm}|}
+\caption{Журнал тестирования}\\\hline
+Дата & Тестировщик & Объект тестирования & ID выполненного теста &
+Количество запусков & Перечень найденных ошибок (ID ошибок) \\\hline\endfirsthead
+\multicolumn{6}{l}{Продолжение таблицы \thetable}\\\hline
+Дата & Тестировщик & Объект тестирования & ID выполненного теста &
+Количество запусков & Перечень найденных ошибок (ID ошибок) \\\hline\endhead
+\rule{0pt}{16mm} & & & & & \\\hline
+\rule{0pt}{16mm} & & & & & \\\hline
+\rule{0pt}{16mm} & & & & & \\\hline
+\rule{0pt}{16mm} & & & & & \\\hline
+\rule{0pt}{16mm} & & & & & \\\hline
+\end{longtable}
+
+\mainsection{Журнал найденных ошибок (шаблон)}
+Заполняется после проведения тестирования.
+В связанном описании BUG указываются commit, версия плана,
+среда, серьезность, статус, шаги воспроизведения и артефакты.
+В таблице приводятся наблюдаемые значения: код HTTP, JSON,
+поля Task, строки SQL или DOM, а не общая оценка поведения.
+
+\begin{longtable}{|P{25mm}|P{23mm}|P{20mm}|P{40mm}|P{40mm}|}
+\caption{Журнал найденных ошибок}\\\hline
+Номер отчета об ошибке & Дата составления & Номер (ID) теста &
+Ожидаемый результат & Фактический результат \\\hline\endfirsthead
+\multicolumn{5}{l}{Продолжение таблицы \thetable}\\\hline
+Номер отчета об ошибке & Дата составления & Номер (ID) теста &
+Ожидаемый результат & Фактический результат \\\hline\endhead
+\rule{0pt}{20mm} & & & & \\\hline
+\rule{0pt}{20mm} & & & & \\\hline
+\rule{0pt}{20mm} & & & & \\\hline
+\rule{0pt}{20mm} & & & & \\\hline
+\end{longtable}
+
+\mainsection{Результаты (шаблон)}
+Заполняется после проведения тестирования.
+\subsection{Идентификация исследованной версии}
+\begin{longtable}{|P{68mm}|P{84mm}|}
+\caption{Паспорт итогового прогона}\\\hline
+Поле & Значение \\\hline
+Commit приложения, версия плана & \rule{0pt}{10mm} \\\hline
+Дата, время, часовой пояс, исполнитель & \rule{0pt}{10mm} \\\hline
+ОС, CPU, RAM, носитель БД & \rule{0pt}{10mm} \\\hline
+Go, драйвер, SQLite, CGO, компилятор C & \rule{0pt}{10mm} \\\hline
+Node.js, Playwright, Chromium, k6 & \rule{0pt}{10mm} \\\hline
+Пути к логам, trace, coverage, сводке k6 & \rule{0pt}{10mm} \\\hline
+\end{longtable}
+
+\subsection{Оценка результатов и критерии приемки}
+Единица учета --- обязательный набор входных данных; у U03 это
+каждая пара метод/ID. Состав наборов фиксируется до запуска.
+Доля пройденных наборов:
+\[
+ P=\frac{N_{\mathrm{PASS}}}
+ {N_{\mathrm{PASS}}+N_{\mathrm{FAIL}}+N_{\mathrm{BLOCKED}}+
+ N_{\mathrm{NOT\ RUN}}}\cdot100\%.
+\]
+Для итоговой приемки требуется $P=100\%$; BLOCKED и NOT RUN
+не исключаются из знаменателя. Сводка по ID содержит PASS только
+при PASS всех наборов соответствующей спецификации.
+
+\begin{longtable}{|P{40mm}|P{80mm}|P{30mm}|}
+\caption{Показатели приемки: значения заполняются после тестирования}\\\hline
+Показатель & Плановый критерий & Измерено \\\hline\endfirsthead
+\multicolumn{3}{l}{Продолжение таблицы \thetable}\\\hline
+Показатель & Плановый критерий & Измерено \\\hline\endhead
+U / I / A / S & Все обязательные наборы каждого уровня PASS;
+P=100\%, FAIL=0, BLOCKED=0, NOT RUN=0 & \rule{0pt}{12mm} \\\hline
+Операторы & Совокупно не менее 85\%; service не менее 90\% & \\\hline
+Ветви & Проверки ввода и отказы Repository в service: 100\%;
+три пакета: не менее 80\% & \\\hline
+Требования & Creq,pass=100\% для 9 требований;
+аттестация F01--F06: 100\% & \\\hline
+Гонки & go test -race: код 0, DATA RACE=0 & \\\hline
+Нагрузка, каждый прогон & RPS не менее 49; N не менее 2940;
+p95 не более 200 мс; 5xx=0; dropped=0; failed=0; checks=1 & \\\hline
+Безопасность & S03: обе записи сохранены; S04/S05:
+счетчик XSS=0, внедренных DOM-узлов=0, dialogs=0 & \\\hline
+Открытые дефекты & Блокирующих, критических и существенных 0;
+незначительные перечислены и согласованы проверяющим & \\\hline
+\end{longtable}
+
+\subsection{Оценка качества и решение о приемке}
+Заполняется после проведения тестирования.
+\begin{longtable}{|P{68mm}|P{84mm}|}
+\caption{Итоговая оценка}\\\hline
+Позиция & Заключение по фактическим данным \\\hline
+Реализованные требования и исключения & \rule{0pt}{14mm} \\\hline
+Открытые дефекты и влияние на работу & \rule{0pt}{14mm} \\\hline
+Ограничения стенда и полноты проверок & \rule{0pt}{14mm} \\\hline
+Решение о приемке и основание & \rule{0pt}{14mm} \\\hline
+Проверяющий, подпись, дата & \rule{0pt}{14mm} \\\hline
+\end{longtable}
+
+\struct{ЗАКЛЮЧЕНИЕ}
+План задает поведение будущего приложения и способы наблюдения
+результата на уровне возвращаемых значений, HTTP, SQLite и DOM.
+Определены порядок интеграции, условия переходов, пороги нагрузки,
+проверка защиты двух точек отображения названия и измерение покрытия.
+Журналы и итоговые измерения не заполнены: реализация приложения
+и выполнение тестов относятся к следующему этапу работы.
+
+\struct{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+\begin{enumerate}[label=\arabic*.]
+\item ГОСТ 7.32-2001. Система стандартов по информации, библиотечному
+и издательскому делу. Отчет о научно-исследовательской работе.
+Структура и правила оформления. С изменением №~1.
+\item The Go Programming Language. The cover story [Электронный ресурс].
+URL: \url{https://go.dev/blog/cover} (дата обращения: 15.11.2026).
+\item SQLite. SQL Language Expressions: Parameters [Электронный ресурс].
+URL: \url{https://www.sqlite.org/lang_expr.html}
+(дата обращения: 15.11.2026).
+\item Grafana k6. Thresholds [Электронный ресурс].
+URL: \url{https://grafana.com/docs/k6/latest/using-k6/thresholds/}
+(дата обращения: 15.11.2026).
+\end{enumerate}
+\end{document}

@@ -1,0 +1,8 @@
+{"Time":"2026-11-15T20:24:31.747056471+03:00","Action":"start","Package":"example.com/tasks/internal/handler"}
+{"Time":"2026-11-15T20:24:31.753453222+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestS03SQLInjection"}
+{"Time":"2026-11-15T20:24:31.75351259+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestS03SQLInjection","Output":"=== RUN   TestS03SQLInjection\n"}
+{"Time":"2026-11-15T20:24:31.756067914+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestS03SQLInjection","Output":"--- PASS: TestS03SQLInjection (0.00s)\n"}
+{"Time":"2026-11-15T20:24:31.756083197+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestS03SQLInjection","Elapsed":0}
+{"Time":"2026-11-15T20:24:31.756137508+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Output":"PASS\n"}
+{"Time":"2026-11-15T20:24:32.764622863+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Output":"ok  \texample.com/tasks/internal/handler\t1.016s\n"}
+{"Time":"2026-11-15T20:24:32.766686805+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Elapsed":1.02}

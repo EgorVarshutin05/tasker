@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>handler: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">example.com/tasks/internal/handler/handler.go (97.8%)</option>
+				
+				<option value="file1">example.com/tasks/internal/repository/sqlite.go (87.9%)</option>
+				
+				<option value="file2">example.com/tasks/internal/service/service.go (100.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">no coverage</span>
+				<span class="cov1">low coverage</span>
+				<span class="cov2">*</span>
+				<span class="cov3">*</span>
+				<span class="cov4">*</span>
+				<span class="cov5">*</span>
+				<span class="cov6">*</span>
+				<span class="cov7">*</span>
+				<span class="cov8">*</span>
+				<span class="cov9">*</span>
+				<span class="cov10">high coverage</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package handler
+
+import (
+        "bytes"
+        "context"
+        "encoding/json"
+        "errors"
+        "example.com/tasks/internal/model"
+        "example.com/tasks/web"
+        "html/template"
+        "io"
+        "mime"
+        "net/http"
+        "strconv"
+        "strings"
+)
+
+type TaskService interface {
+        Create(context.Context, string) (model.Task, error)
+        List(context.Context) ([]model.Task, error)
+        Complete(context.Context, int64) (model.Task, error)
+        Delete(context.Context, int64) error
+}
+
+type Handler struct {
+        service TaskService
+        page    *template.Template
+}
+
+func New(service TaskService) *Handler <span class="cov9" title="43">{
+        return &amp;Handler{service: service,
+                page: template.Must(template.New("index").Parse(web.Index))}
+}</span>
+
+func writeJSON(w http.ResponseWriter, status int, value any) <span class="cov9" title="66">{
+        w.Header().Set("Content-Type", "application/json; charset=utf-8")
+        w.WriteHeader(status)
+        json.NewEncoder(w).Encode(value)
+}</span>
+
+func failure(w http.ResponseWriter, err error) <span class="cov6" title="16">{
+        code, status := "storage", http.StatusInternalServerError
+        switch </span>{
+        case errors.Is(err, model.ErrTitle):<span class="cov2" title="2">
+                code, status = "title_length", 400</span>
+        case errors.Is(err, model.ErrID):<span class="cov5" title="7">
+                code, status = "bad_id", 400</span>
+        case errors.Is(err, model.ErrNotFound):<span class="cov2" title="2">
+                code, status = "not_found", 404</span>
+        }
+        <span class="cov6" title="16">writeJSON(w, status, map[string]string{"error": code})</span>
+}
+
+func method(w http.ResponseWriter, allow string) <span class="cov3" title="4">{
+        w.Header().Set("Allow", allow)
+        writeJSON(w, 405, map[string]string{"error": "method"})
+}</span>
+
+func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) <span class="cov10" title="68">{
+        path := r.URL.Path
+        if path == "/" </span><span class="cov3" title="3">{
+                if r.Method != "GET" </span><span class="cov1" title="1">{
+                        method(w, "GET")
+                        return
+                }</span>
+                <span class="cov2" title="2">tasks, err := h.service.List(r.Context())
+                if err != nil </span><span class="cov1" title="1">{
+                        failure(w, err)
+                        return
+                }</span>
+                <span class="cov1" title="1">var body bytes.Buffer
+                if h.page.Execute(&amp;body, tasks) != nil </span><span class="cov0" title="0">{
+                        failure(w, model.ErrStorage)
+                        return
+                }</span>
+                <span class="cov1" title="1">w.Header().Set("Content-Type", "text/html; charset=utf-8")
+                w.WriteHeader(200)
+                w.Write(body.Bytes())
+                return</span>
+        }
+        <span class="cov9" title="65">if path == "/api/tasks" </span><span class="cov9" title="46">{
+                if r.Method != "GET" &amp;&amp; r.Method != "POST" </span><span class="cov1" title="1">{
+                        method(w, "GET, POST")
+                        return
+                }</span>
+                <span class="cov9" title="45">if r.Method == "GET" </span><span class="cov4" title="5">{
+                        tasks, err := h.service.List(r.Context())
+                        if err != nil </span><span class="cov1" title="1">{
+                                failure(w, err)
+                                return
+                        }</span>
+                        <span class="cov3" title="4">writeJSON(w, 200, tasks)
+                        return</span>
+                }
+                <span class="cov8" title="40">media, params, err := mime.ParseMediaType(r.Header.Get("Content-Type"))
+                if err != nil || media != "application/json" || len(params) &gt; 1 ||
+                        (len(params) == 1 &amp;&amp; !strings.EqualFold(params["charset"], "utf-8")) </span><span class="cov4" title="5">{
+                        writeJSON(w, 415, map[string]string{"error": "media_type"})
+                        return
+                }</span>
+                <span class="cov8" title="35">var body struct {
+                        Title *string `json:"title"`
+                }
+                dec := json.NewDecoder(r.Body)
+                dec.DisallowUnknownFields()
+                if dec.Decode(&amp;body) != nil || body.Title == nil || dec.Decode(&amp;struct{}{}) != io.EOF </span><span class="cov5" title="9">{
+                        writeJSON(w, 400, map[string]string{"error": "bad_json"})
+                        return
+                }</span>
+                <span class="cov7" title="26">task, err := h.service.Create(r.Context(), *body.Title)
+                if err != nil </span><span class="cov3" title="3">{
+                        failure(w, err)
+                        return
+                }</span>
+                <span class="cov7" title="23">writeJSON(w, 201, task)
+                return</span>
+        }
+        <span class="cov7" title="19">if strings.HasPrefix(path, "/api/tasks/") </span><span class="cov7" title="18">{
+                parts := strings.Split(strings.TrimPrefix(path, "/api/tasks/"), "/")
+                complete := len(parts) == 2 &amp;&amp; parts[1] == "done"
+                if parts[0] != "" &amp;&amp; (len(parts) == 1 || complete) </span><span class="cov6" title="15">{
+                        allow := "DELETE"
+                        if complete </span><span class="cov5" title="9">{
+                                allow = "PATCH"
+                        }</span>
+                        <span class="cov6" title="15">if r.Method != allow </span><span class="cov2" title="2">{
+                                method(w, allow)
+                                return
+                        }</span>
+                        <span class="cov6" title="13">id, err := parseID(parts[0])
+                        if err != nil </span><span class="cov5" title="7">{
+                                failure(w, err)
+                                return
+                        }</span>
+                        <span class="cov4" title="6">if complete </span><span class="cov3" title="3">{
+                                task, err := h.service.Complete(r.Context(), id)
+                                if err != nil </span><span class="cov2" title="2">{
+                                        failure(w, err)
+                                        return
+                                }</span>
+                                <span class="cov1" title="1">writeJSON(w, 200, task)</span>
+                        } else<span class="cov3" title="3"> {
+                                if err := h.service.Delete(r.Context(), id); err != nil </span><span class="cov2" title="2">{
+                                        failure(w, err)
+                                        return
+                                }</span>
+                                <span class="cov1" title="1">w.WriteHeader(204)</span>
+                        }
+                        <span class="cov2" title="2">return</span>
+                }
+        }
+        <span class="cov3" title="4">writeJSON(w, 404, map[string]string{"error": "route"})</span>
+}
+
+func parseID(raw string) (int64, error) <span class="cov6" title="13">{
+        if len(raw) == 0 || raw[0] &lt; '1' || raw[0] &gt; '9' </span><span class="cov3" title="4">{
+                return 0, model.ErrID
+        }</span>
+        <span class="cov5" title="9">for _, c := range raw </span><span class="cov8" title="39">{
+                if c &lt; '0' || c &gt; '9' </span><span class="cov1" title="1">{
+                        return 0, model.ErrID
+                }</span>
+        }
+        <span class="cov5" title="8">id, err := strconv.ParseInt(raw, 10, 64)
+        if err != nil || id &gt; 2147483647 </span><span class="cov2" title="2">{
+                return 0, model.ErrID
+        }</span>
+        <span class="cov4" title="6">return id, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package repository
+
+import (
+        "context"
+        "database/sql"
+        "example.com/tasks/internal/model"
+        _ "github.com/mattn/go-sqlite3"
+)
+
+const schema = `CREATE TABLE IF NOT EXISTS tasks (
+ id INTEGER PRIMARY KEY AUTOINCREMENT CHECK (id BETWEEN 1 AND 2147483647),
+ title TEXT NOT NULL CHECK (length(title) BETWEEN 1 AND 100),
+ done INTEGER NOT NULL DEFAULT 0 CHECK (done IN (0, 1))
+)`
+
+type SQLiteRepository struct{ db *sql.DB }
+
+// Open initializes the schema once. Request handlers never call it.
+func Open(path string) (*sql.DB, error) <span class="cov8" title="52">{
+        db, err := sql.Open("sqlite3", path)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, model.ErrStorage
+        }</span>
+        <span class="cov8" title="52">db.SetMaxOpenConns(1)
+        for _, query := range []string{
+                "PRAGMA busy_timeout=5000", "PRAGMA journal_mode=WAL", schema,
+        } </span><span class="cov10" title="154">{
+                if _, err = db.Exec(query); err != nil </span><span class="cov1" title="1">{
+                        db.Close()
+                        return nil, model.ErrStorage
+                }</span>
+        }
+        <span class="cov8" title="51">return db, nil</span>
+}
+
+func New(db *sql.DB) *SQLiteRepository <span class="cov7" title="50">{ return &amp;SQLiteRepository{db: db} }</span>
+
+func (r *SQLiteRepository) Create(ctx context.Context, title string) (model.Task, error) <span class="cov6" title="26">{
+        result, err := r.db.ExecContext(ctx,
+                "INSERT INTO tasks(title, done) VALUES (?, 0)", title)
+        if err != nil </span><span class="cov1" title="1">{
+                return model.Task{}, model.ErrStorage
+        }</span>
+        <span class="cov6" title="25">id, err := result.LastInsertId()
+        if err != nil </span><span class="cov0" title="0">{
+                return model.Task{}, model.ErrStorage
+        }</span>
+        <span class="cov6" title="25">return model.Task{ID: id, Title: title, Done: false}, nil</span>
+}
+
+func (r *SQLiteRepository) List(ctx context.Context) ([]model.Task, error) <span class="cov5" title="10">{
+        rows, err := r.db.QueryContext(ctx,
+                "SELECT id, title, done FROM tasks ORDER BY id ASC")
+        if err != nil </span><span class="cov2" title="2">{
+                return nil, model.ErrStorage
+        }</span>
+        <span class="cov4" title="8">defer rows.Close()
+        tasks := []model.Task{}
+        for rows.Next() </span><span class="cov6" title="26">{
+                var task model.Task
+                if err := rows.Scan(&amp;task.ID, &amp;task.Title, &amp;task.Done); err != nil </span><span class="cov1" title="1">{
+                        return nil, model.ErrStorage
+                }</span>
+                <span class="cov6" title="25">tasks = append(tasks, task)</span>
+        }
+        <span class="cov4" title="7">if rows.Err() != nil </span><span class="cov0" title="0">{
+                return nil, model.ErrStorage
+        }</span>
+        <span class="cov4" title="7">return tasks, nil</span>
+}
+
+func (r *SQLiteRepository) Complete(ctx context.Context, id int64) (model.Task, error) <span class="cov4" title="8">{
+        tx, err := r.db.BeginTx(ctx, nil)
+        if err != nil </span><span class="cov1" title="1">{
+                return model.Task{}, model.ErrStorage
+        }</span>
+        <span class="cov4" title="7">defer tx.Rollback()
+        result, err := tx.ExecContext(ctx, "UPDATE tasks SET done = 1 WHERE id = ?", id)
+        if err != nil </span><span class="cov2" title="2">{
+                return model.Task{}, model.ErrStorage
+        }</span>
+        <span class="cov3" title="5">n, err := result.RowsAffected()
+        if err != nil </span><span class="cov0" title="0">{
+                return model.Task{}, model.ErrStorage
+        }</span>
+        <span class="cov3" title="5">if n == 0 </span><span class="cov2" title="2">{
+                return model.Task{}, model.ErrNotFound
+        }</span>
+        <span class="cov2" title="3">var task model.Task
+        err = tx.QueryRowContext(ctx,
+                "SELECT id, title, done FROM tasks WHERE id = ?", id).
+                Scan(&amp;task.ID, &amp;task.Title, &amp;task.Done)
+        if err != nil </span><span class="cov0" title="0">{
+                return model.Task{}, model.ErrStorage
+        }</span>
+        <span class="cov2" title="3">if tx.Commit() != nil </span><span class="cov0" title="0">{
+                return model.Task{}, model.ErrStorage
+        }</span>
+        <span class="cov2" title="3">return task, nil</span>
+}
+
+func (r *SQLiteRepository) Delete(ctx context.Context, id int64) error <span class="cov4" title="6">{
+        result, err := r.db.ExecContext(ctx, "DELETE FROM tasks WHERE id = ?", id)
+        if err != nil </span><span class="cov1" title="1">{
+                return model.ErrStorage
+        }</span>
+        <span class="cov3" title="5">n, err := result.RowsAffected()
+        if err != nil </span><span class="cov0" title="0">{
+                return model.ErrStorage
+        }</span>
+        <span class="cov3" title="5">if n == 0 </span><span class="cov2" title="2">{
+                return model.ErrNotFound
+        }</span>
+        <span class="cov2" title="3">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package service
+
+import (
+        "context"
+        "example.com/tasks/internal/model"
+        "strings"
+        "unicode/utf8"
+)
+
+type Repository interface {
+        Create(context.Context, string) (model.Task, error)
+        List(context.Context) ([]model.Task, error)
+        Complete(context.Context, int64) (model.Task, error)
+        Delete(context.Context, int64) error
+}
+
+type Service struct{ repo Repository }
+
+func New(repo Repository) *Service <span class="cov10" title="70">{ return &amp;Service{repo: repo} }</span>
+
+func (s *Service) Create(ctx context.Context, title string) (model.Task, error) <span class="cov8" title="34">{
+        if !utf8.ValidString(title) </span><span class="cov1" title="1">{
+                return model.Task{}, model.ErrTitle
+        }</span>
+        <span class="cov8" title="33">title = strings.TrimSpace(title)
+        n := utf8.RuneCountInString(title)
+        if n &lt; 1 || n &gt; 100 </span><span class="cov4" title="5">{
+                return model.Task{}, model.ErrTitle
+        }</span>
+        <span class="cov8" title="28">task, err := s.repo.Create(ctx, title)
+        if err != nil </span><span class="cov2" title="2">{
+                return model.Task{}, err
+        }</span>
+        <span class="cov7" title="26">return task, nil</span>
+}
+
+func (s *Service) List(ctx context.Context) ([]model.Task, error) <span class="cov6" title="11">{
+        tasks, err := s.repo.List(ctx)
+        if err != nil </span><span class="cov3" title="3">{
+                return nil, err
+        }</span>
+        <span class="cov5" title="8">if tasks == nil </span><span class="cov1" title="1">{
+                tasks = []model.Task{}
+        }</span>
+        <span class="cov5" title="8">return tasks, nil</span>
+}
+
+func (s *Service) Complete(ctx context.Context, id int64) (model.Task, error) <span class="cov6" title="12">{
+        if id &lt; 1 || id &gt; 2147483647 </span><span class="cov3" title="3">{
+                return model.Task{}, model.ErrID
+        }</span>
+        <span class="cov5" title="9">task, err := s.repo.Complete(ctx, id)
+        if err != nil </span><span class="cov3" title="4">{
+                return model.Task{}, err
+        }</span>
+        <span class="cov4" title="5">return task, nil</span>
+}
+
+func (s *Service) Delete(ctx context.Context, id int64) error <span class="cov6" title="12">{
+        if id &lt; 1 || id &gt; 2147483647 </span><span class="cov3" title="3">{
+                return model.ErrID
+        }</span>
+        <span class="cov5" title="9">return s.repo.Delete(ctx, id)</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

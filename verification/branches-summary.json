@@ -1,0 +1,879 @@
+{
+  "scope": "Explicit if/conditional-for decisions and switch case/default outcomes. Range-loop iteration and MC/DC are not measured.",
+  "covered": 90,
+  "total": 98,
+  "percent": 91.83673469387755,
+  "service_covered": 16,
+  "service_total": 16,
+  "service_percent": 100.0,
+  "branches": [
+    {
+      "id": "internal/service/service.go:22:if",
+      "file": "internal/service/service.go",
+      "line": 22,
+      "function": "Create",
+      "kind": "if",
+      "condition": "!utf8.ValidString(title)",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/service/service.go:27:if",
+      "file": "internal/service/service.go",
+      "line": 27,
+      "function": "Create",
+      "kind": "if",
+      "condition": "n < 1 || n > 100",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/service/service.go:31:if",
+      "file": "internal/service/service.go",
+      "line": 31,
+      "function": "Create",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/service/service.go:39:if",
+      "file": "internal/service/service.go",
+      "line": 39,
+      "function": "List",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/service/service.go:42:if",
+      "file": "internal/service/service.go",
+      "line": 42,
+      "function": "List",
+      "kind": "if",
+      "condition": "tasks == nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/service/service.go:49:if",
+      "file": "internal/service/service.go",
+      "line": 49,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "id < 1 || id > 2147483647",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/service/service.go:53:if",
+      "file": "internal/service/service.go",
+      "line": 53,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/service/service.go:60:if",
+      "file": "internal/service/service.go",
+      "line": 60,
+      "function": "Delete",
+      "kind": "if",
+      "condition": "id < 1 || id > 2147483647",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:21:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 21,
+      "function": "Open",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/repository/sqlite.go:28:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 28,
+      "function": "Open",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:41:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 41,
+      "function": "Create",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:45:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 45,
+      "function": "Create",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/repository/sqlite.go:54:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 54,
+      "function": "List",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:59:for",
+      "file": "internal/repository/sqlite.go",
+      "line": 59,
+      "function": "List",
+      "kind": "for",
+      "condition": "rows.Next()",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:61:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 61,
+      "function": "List",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:66:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 66,
+      "function": "List",
+      "kind": "if",
+      "condition": "rows.Err() != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/repository/sqlite.go:74:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 74,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:79:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 79,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:83:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 83,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/repository/sqlite.go:86:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 86,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "n == 0",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:93:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 93,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/repository/sqlite.go:96:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 96,
+      "function": "Complete",
+      "kind": "if",
+      "condition": "tx.Commit() != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/repository/sqlite.go:104:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 104,
+      "function": "Delete",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/repository/sqlite.go:108:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 108,
+      "function": "Delete",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/repository/sqlite.go:111:if",
+      "file": "internal/repository/sqlite.go",
+      "line": 111,
+      "function": "Delete",
+      "kind": "if",
+      "condition": "n == 0",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:44:case-0",
+      "file": "internal/handler/handler.go",
+      "line": 44,
+      "function": "failure",
+      "kind": "switch",
+      "condition": "errors.Is(err, model.ErrTitle)",
+      "outcomes": [
+        "taken"
+      ],
+      "executed": [
+        "taken"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:46:case-1",
+      "file": "internal/handler/handler.go",
+      "line": 46,
+      "function": "failure",
+      "kind": "switch",
+      "condition": "errors.Is(err, model.ErrID)",
+      "outcomes": [
+        "taken"
+      ],
+      "executed": [
+        "taken"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:48:case-2",
+      "file": "internal/handler/handler.go",
+      "line": 48,
+      "function": "failure",
+      "kind": "switch",
+      "condition": "errors.Is(err, model.ErrNotFound)",
+      "outcomes": [
+        "taken"
+      ],
+      "executed": [
+        "taken"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:43:implicit-default",
+      "file": "internal/handler/handler.go",
+      "line": 43,
+      "function": "failure",
+      "kind": "switch",
+      "condition": "implicit default",
+      "outcomes": [
+        "taken"
+      ],
+      "executed": [
+        "taken"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:61:if",
+      "file": "internal/handler/handler.go",
+      "line": 61,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "path == \"/\"",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:62:if",
+      "file": "internal/handler/handler.go",
+      "line": 62,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "r.Method != \"GET\"",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:67:if",
+      "file": "internal/handler/handler.go",
+      "line": 67,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:72:if",
+      "file": "internal/handler/handler.go",
+      "line": 72,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "h.page.Execute(&body, tasks) != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "false"
+      ],
+      "missing": [
+        "true"
+      ]
+    },
+    {
+      "id": "internal/handler/handler.go:81:if",
+      "file": "internal/handler/handler.go",
+      "line": 81,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "path == \"/api/tasks\"",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:82:if",
+      "file": "internal/handler/handler.go",
+      "line": 82,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "r.Method != \"GET\" && r.Method != \"POST\"",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:86:if",
+      "file": "internal/handler/handler.go",
+      "line": 86,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "r.Method == \"GET\"",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:88:if",
+      "file": "internal/handler/handler.go",
+      "line": 88,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:96:if",
+      "file": "internal/handler/handler.go",
+      "line": 96,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "err != nil || media != \"application/json\" || len(params) > 1 ||\n\t(len(params) == 1 && !strings.EqualFold(params[\"charset\"], \"utf-8\"))",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:106:if",
+      "file": "internal/handler/handler.go",
+      "line": 106,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "dec.Decode(&body) != nil || body.Title == nil || dec.Decode(&struct{}{}) != io.EOF",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:111:if",
+      "file": "internal/handler/handler.go",
+      "line": 111,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:118:if",
+      "file": "internal/handler/handler.go",
+      "line": 118,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "strings.HasPrefix(path, \"/api/tasks/\")",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:121:if",
+      "file": "internal/handler/handler.go",
+      "line": 121,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "parts[0] != \"\" && (len(parts) == 1 || complete)",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:123:if",
+      "file": "internal/handler/handler.go",
+      "line": 123,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "complete",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:126:if",
+      "file": "internal/handler/handler.go",
+      "line": 126,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "r.Method != allow",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:131:if",
+      "file": "internal/handler/handler.go",
+      "line": 131,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:135:if",
+      "file": "internal/handler/handler.go",
+      "line": 135,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "complete",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:137:if",
+      "file": "internal/handler/handler.go",
+      "line": 137,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:143:if",
+      "file": "internal/handler/handler.go",
+      "line": 143,
+      "function": "ServeHTTP",
+      "kind": "if",
+      "condition": "err != nil",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:156:if",
+      "file": "internal/handler/handler.go",
+      "line": 156,
+      "function": "parseID",
+      "kind": "if",
+      "condition": "len(raw) == 0 || raw[0] < '1' || raw[0] > '9'",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:160:if",
+      "file": "internal/handler/handler.go",
+      "line": 160,
+      "function": "parseID",
+      "kind": "if",
+      "condition": "c < '0' || c > '9'",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    },
+    {
+      "id": "internal/handler/handler.go:165:if",
+      "file": "internal/handler/handler.go",
+      "line": 165,
+      "function": "parseID",
+      "kind": "if",
+      "condition": "err != nil || id > 2147483647",
+      "outcomes": [
+        "true",
+        "false"
+      ],
+      "executed": [
+        "true",
+        "false"
+      ],
+      "missing": []
+    }
+  ],
+  "passed": true
+}

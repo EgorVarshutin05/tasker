@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-11-15T17:31:33.933615+00:00",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "cpu_count": 9,
+  "go": "go version go1.23.12 linux/amd64",
+  "embedded_sqlite": "{\"go\":\"go1.23.12\",\"sqlite\":\"3.46.1\",\"sqlite_number\":3046001,\"sqlite_source_id\":\"2024-08-13 09:16:08 c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33\"}",
+  "node": "v24.22.1",
+  "npm": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n11.9.0",
+  "k6": "k6 v0.57.0 (commit/50afd82c18, go1.23.6, linux/amd64)",
+  "commit": "Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.",
+  "cgo_enabled": "1",
+  "gcc": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "sqlite_driver": "github.com/mattn/go-sqlite3 v1.14.24",
+  "playwright": "1.56.1",
+  "plan_sha256": "b7920ac2914b03f861908e2e27c20ebe8f86e1a267690a2600f35e8c1c8d450b"
+}

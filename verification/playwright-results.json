@@ -1,0 +1,371 @@
+{
+  "config": {
+    "configFile": "/workspace/scratch/cdac9fcda741/tasks-testing-project/e2e/playwright.config.ts",
+    "rootDir": "/workspace/scratch/cdac9fcda741/tasks-testing-project/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/junit.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/workspace/scratch/cdac9fcda741/tasks-testing-project/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/workspace/scratch/cdac9fcda741/tasks-testing-project/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "tests.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests.spec.ts",
+      "file": "tests.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "A01 creation and whitespace rejection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 449,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T17:25:40.742Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "application/json",
+                      "body": "eyJ2ZXJzaW9uIjoiMTQxLjAuNzM5MC4zNyIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii93b3Jrc3BhY2Uvc2NyYXRjaC9jZGFjOWZjZGE3NDEvdG1wL3Rvb2xjaGFpbnMvYnJvd3Nlci1taWNyb3NvZnQvY2hyb21lLWxpbnV4L2hlYWRsZXNzX3NoZWxsIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "292e21d96a3a4afcf952-df6619a72b3ad594f26c",
+          "file": "tests.spec.ts",
+          "line": 92,
+          "column": 1
+        },
+        {
+          "title": "A02 empty and ID-ordered list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 270,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T17:25:41.290Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "application/json",
+                      "body": "eyJ2ZXJzaW9uIjoiMTQxLjAuNzM5MC4zNyIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii93b3Jrc3BhY2Uvc2NyYXRjaC9jZGFjOWZjZGE3NDEvdG1wL3Rvb2xjaGFpbnMvYnJvd3Nlci1taWNyb3NvZnQvY2hyb21lLWxpbnV4L2hlYWRsZXNzX3NoZWxsIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "292e21d96a3a4afcf952-415a2cc4b71e425e6d55",
+          "file": "tests.spec.ts",
+          "line": 114,
+          "column": 1
+        },
+        {
+          "title": "A03 completion persists across real process restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 418,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T17:25:41.577Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "application/json",
+                      "body": "eyJ2ZXJzaW9uIjoiMTQxLjAuNzM5MC4zNyIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii93b3Jrc3BhY2Uvc2NyYXRjaC9jZGFjOWZjZGE3NDEvdG1wL3Rvb2xjaGFpbnMvYnJvd3Nlci1taWNyb3NvZnQvY2hyb21lLWxpbnV4L2hlYWRsZXNzX3NoZWxsIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "292e21d96a3a4afcf952-6221e070e24cbdd675ee",
+          "file": "tests.spec.ts",
+          "line": 127,
+          "column": 1
+        },
+        {
+          "title": "A04 physical deletion and repeat 404",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 303,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T17:25:42.002Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "application/json",
+                      "body": "eyJ2ZXJzaW9uIjoiMTQxLjAuNzM5MC4zNyIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii93b3Jrc3BhY2Uvc2NyYXRjaC9jZGFjOWZjZGE3NDEvdG1wL3Rvb2xjaGFpbnMvYnJvd3Nlci1taWNyb3NvZnQvY2hyb21lLWxpbnV4L2hlYWRsZXNzX3NoZWxsIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "292e21d96a3a4afcf952-ed7d6a916e96799187da",
+          "file": "tests.spec.ts",
+          "line": 150,
+          "column": 1
+        },
+        {
+          "title": "A05 live DROP TABLE is displayed as storage failure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 248,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T17:25:42.319Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "application/json",
+                      "body": "eyJ2ZXJzaW9uIjoiMTQxLjAuNzM5MC4zNyIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii93b3Jrc3BhY2Uvc2NyYXRjaC9jZGFjOWZjZGE3NDEvdG1wL3Rvb2xjaGFpbnMvYnJvd3Nlci1taWNyb3NvZnQvY2hyb21lLWxpbnV4L2hlYWRsZXNzX3NoZWxsIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "292e21d96a3a4afcf952-c403978bcfe943ef4bc4",
+          "file": "tests.spec.ts",
+          "line": 174,
+          "column": 1
+        },
+        {
+          "title": "S04 fetch appends XSS payload as text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 810,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T17:25:42.595Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "application/json",
+                      "body": "eyJ2ZXJzaW9uIjoiMTQxLjAuNzM5MC4zNyIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii93b3Jrc3BhY2Uvc2NyYXRjaC9jZGFjOWZjZGE3NDEvdG1wL3Rvb2xjaGFpbnMvYnJvd3Nlci1taWNyb3NvZnQvY2hyb21lLWxpbnV4L2hlYWRsZXNzX3NoZWxsIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "292e21d96a3a4afcf952-9c9baed6aef604ba3ece",
+          "file": "tests.spec.ts",
+          "line": 199,
+          "column": 1
+        },
+        {
+          "title": "S05 raw server HTML escapes stored script",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 697,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T17:25:43.422Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "application/json",
+                      "body": "eyJ2ZXJzaW9uIjoiMTQxLjAuNzM5MC4zNyIsImV4ZWN1dGFibGVPdmVycmlkZSI6Ii93b3Jrc3BhY2Uvc2NyYXRjaC9jZGFjOWZjZGE3NDEvdG1wL3Rvb2xjaGFpbnMvYnJvd3Nlci1taWNyb3NvZnQvY2hyb21lLWxpbnV4L2hlYWRsZXNzX3NoZWxsIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "292e21d96a3a4afcf952-e89fec4b0a3d488cf956",
+          "file": "tests.spec.ts",
+          "line": 222,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-15T17:25:40.185Z",
+    "duration": 3974.094,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,36 @@
+name: Load k6 S01-S02
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CGO_ENABLED: '1'
+  GOTOOLCHAIN: local
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache: true
+      - run: sudo apt-get update && sudo apt-get install -y build-essential python3
+      - name: Install pinned k6
+        run: |
+          curl --fail --location --retry 3 -o /tmp/k6.tar.gz https://github.com/grafana/k6/releases/download/v0.57.0/k6-v0.57.0-linux-amd64.tar.gz
+          tar -xzf /tmp/k6.tar.gz -C /tmp
+          sudo install /tmp/k6-v0.57.0-linux-amd64/k6 /usr/local/bin/k6
+      - name: Run separate warmups and measurements
+        run: make test-load
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k6-measurements
+          path: reports/load/
+          if-no-files-found: warn

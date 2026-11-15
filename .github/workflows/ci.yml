@@ -1,0 +1,112 @@
+name: Build & Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tasks-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CGO_ENABLED: '1'
+  GOTOOLCHAIN: local
+
+jobs:
+  unit:
+    name: Unit U01-U05 and race detector
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache: true
+      - name: Install C compiler
+        run: sudo apt-get update && sudo apt-get install -y build-essential python3
+      - name: Check Go formatting
+        run: |
+          mkdir -p reports
+          gofmt -l cmd internal web > reports/gofmt.txt
+          test ! -s reports/gofmt.txt
+      - name: Build and vet
+        run: make build vet
+      - name: Run U01-U05 with race detector
+        run: make test-unit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-results
+          path: reports/
+          if-no-files-found: warn
+
+  integration:
+    name: Integration I01-I08, SQLi S03 and coverage
+    needs: unit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache: true
+      - run: sudo apt-get update && sudo apt-get install -y build-essential python3
+      - name: Run integration and SQL injection checks with race detector
+        run: make test-integration test-security
+      - name: Check coverage parser
+        run: python3 -m unittest tools/test_coverage.py
+      - name: Enforce total >=85% and service >=90%
+        run: make coverage branches
+      - name: Record tool versions
+        run: make environment
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-and-coverage
+          path: reports/
+          if-no-files-found: warn
+
+  e2e:
+    name: Playwright A01-A05 and XSS S04-S05
+    needs: integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y build-essential python3
+      - run: make build
+      - run: npm ci
+        working-directory: e2e
+      - run: npx playwright install --with-deps chromium
+        working-directory: e2e
+      - run: npm run typecheck && npm test
+        working-directory: e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            e2e/playwright-report/
+            e2e/test-results/
+          if-no-files-found: warn
+      - name: Deliver tested Linux binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: tasks-linux-amd64
+          path: bin/tasks
+          if-no-files-found: error

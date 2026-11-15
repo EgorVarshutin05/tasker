@@ -1,0 +1,16 @@
+{
+  "name": "tasks-testing-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:security": "playwright test --grep 'S0[45]'",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/node": "22.10.2",
+    "parse5": "7.2.1",
+    "typescript": "5.7.3"
+  }
+}

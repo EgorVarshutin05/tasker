@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "database": true,
+    "N>=2940": true,
+    "N/60>=49": true,
+    "all_thresholds": true
+  },
+  "requests": 3001,
+  "N201": 0,
+  "rps_over_60s": 50.016666666666666,
+  "p95_ms": 0.726798,
+  "sql_values": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sql_expected": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sqlite_bytes": 12288
+}

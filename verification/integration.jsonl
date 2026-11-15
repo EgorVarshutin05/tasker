@@ -1,0 +1,228 @@
+{"Time":"2026-11-15T20:24:30.110103739+03:00","Action":"start","Package":"example.com/tasks/internal/repository"}
+{"Time":"2026-11-15T20:24:30.116700924+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI01RepositoryCreateList"}
+{"Time":"2026-11-15T20:24:30.116761654+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI01RepositoryCreateList","Output":"=== RUN   TestI01RepositoryCreateList\n"}
+{"Time":"2026-11-15T20:24:30.118253876+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI01RepositoryCreateList","Output":"--- PASS: TestI01RepositoryCreateList (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.118277321+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI01RepositoryCreateList","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.118287166+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI02ServiceCompleteDelete"}
+{"Time":"2026-11-15T20:24:30.118289439+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI02ServiceCompleteDelete","Output":"=== RUN   TestI02ServiceCompleteDelete\n"}
+{"Time":"2026-11-15T20:24:30.119463197+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI02ServiceCompleteDelete","Output":"--- PASS: TestI02ServiceCompleteDelete (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.119477218+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI02ServiceCompleteDelete","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.119562435+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures"}
+{"Time":"2026-11-15T20:24:30.119571068+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures","Output":"=== RUN   TestI07SchemaAndStorageFailures\n"}
+{"Time":"2026-11-15T20:24:30.119598959+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/checks"}
+{"Time":"2026-11-15T20:24:30.11960635+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/checks","Output":"=== RUN   TestI07SchemaAndStorageFailures/checks\n"}
+{"Time":"2026-11-15T20:24:30.120358651+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/checks","Output":"--- PASS: TestI07SchemaAndStorageFailures/checks (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.120374164+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/checks","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.120430838+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/autoincrement"}
+{"Time":"2026-11-15T20:24:30.12043885+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/autoincrement","Output":"=== RUN   TestI07SchemaAndStorageFailures/autoincrement\n"}
+{"Time":"2026-11-15T20:24:30.121065033+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/autoincrement","Output":"--- PASS: TestI07SchemaAndStorageFailures/autoincrement (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.121081026+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/autoincrement","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.121101467+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/missing_complete"}
+{"Time":"2026-11-15T20:24:30.121108487+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/missing_complete","Output":"=== RUN   TestI07SchemaAndStorageFailures/missing_complete\n"}
+{"Time":"2026-11-15T20:24:30.121672717+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/missing_complete","Output":"--- PASS: TestI07SchemaAndStorageFailures/missing_complete (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.121685547+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/missing_complete","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.121689893+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/open_failure"}
+{"Time":"2026-11-15T20:24:30.121703083+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/open_failure","Output":"=== RUN   TestI07SchemaAndStorageFailures/open_failure\n"}
+{"Time":"2026-11-15T20:24:30.12191638+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/open_failure","Output":"--- PASS: TestI07SchemaAndStorageFailures/open_failure (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.121953806+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/open_failure","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.122016529+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/drop_table"}
+{"Time":"2026-11-15T20:24:30.122024491+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/drop_table","Output":"=== RUN   TestI07SchemaAndStorageFailures/drop_table\n"}
+{"Time":"2026-11-15T20:24:30.12255429+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/drop_table","Output":"--- PASS: TestI07SchemaAndStorageFailures/drop_table (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.12256721+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/drop_table","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.122585807+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/rollback_update"}
+{"Time":"2026-11-15T20:24:30.122593038+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/rollback_update","Output":"=== RUN   TestI07SchemaAndStorageFailures/rollback_update\n"}
+{"Time":"2026-11-15T20:24:30.123428212+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/rollback_update","Output":"--- PASS: TestI07SchemaAndStorageFailures/rollback_update (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.123438207+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/rollback_update","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.123445477+03:00","Action":"run","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/scan_failure"}
+{"Time":"2026-11-15T20:24:30.123448993+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/scan_failure","Output":"=== RUN   TestI07SchemaAndStorageFailures/scan_failure\n"}
+{"Time":"2026-11-15T20:24:30.1240516+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/scan_failure","Output":"--- PASS: TestI07SchemaAndStorageFailures/scan_failure (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.124068055+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures/scan_failure","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.124072181+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures","Output":"--- PASS: TestI07SchemaAndStorageFailures (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.124077058+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Test":"TestI07SchemaAndStorageFailures","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.124116256+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Output":"PASS\n"}
+{"Time":"2026-11-15T20:24:30.243559066+03:00","Action":"start","Package":"example.com/tasks/internal/handler"}
+{"Time":"2026-11-15T20:24:30.249868808+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI03HTTPTaskLifecycle"}
+{"Time":"2026-11-15T20:24:30.249926474+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI03HTTPTaskLifecycle","Output":"=== RUN   TestI03HTTPTaskLifecycle\n"}
+{"Time":"2026-11-15T20:24:30.251617793+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI03HTTPTaskLifecycle","Output":"--- PASS: TestI03HTTPTaskLifecycle (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.251635639+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI03HTTPTaskLifecycle","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.251641027+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures"}
+{"Time":"2026-11-15T20:24:30.25164256+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures","Output":"=== RUN   TestI04HTTPInputFailures\n"}
+{"Time":"2026-11-15T20:24:30.251714327+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/empty"}
+{"Time":"2026-11-15T20:24:30.251719775+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/empty","Output":"=== RUN   TestI04HTTPInputFailures/empty\n"}
+{"Time":"2026-11-15T20:24:30.252558478+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/empty","Output":"--- PASS: TestI04HTTPInputFailures/empty (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.252580751+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/empty","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.25258669+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/too_long"}
+{"Time":"2026-11-15T20:24:30.252588413+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/too_long","Output":"=== RUN   TestI04HTTPInputFailures/too_long\n"}
+{"Time":"2026-11-15T20:24:30.253396592+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/too_long","Output":"--- PASS: TestI04HTTPInputFailures/too_long (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.25340851+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/too_long","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.2534489+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/malformed"}
+{"Time":"2026-11-15T20:24:30.253454358+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/malformed","Output":"=== RUN   TestI04HTTPInputFailures/malformed\n"}
+{"Time":"2026-11-15T20:24:30.254348319+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/malformed","Output":"--- PASS: TestI04HTTPInputFailures/malformed (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.254356662+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/malformed","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.254391153+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/null_title"}
+{"Time":"2026-11-15T20:24:30.254392725+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/null_title","Output":"=== RUN   TestI04HTTPInputFailures/null_title\n"}
+{"Time":"2026-11-15T20:24:30.255411527+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/null_title","Output":"--- PASS: TestI04HTTPInputFailures/null_title (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.255422954+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/null_title","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.255425608+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/number"}
+{"Time":"2026-11-15T20:24:30.255429233+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/number","Output":"=== RUN   TestI04HTTPInputFailures/number\n"}
+{"Time":"2026-11-15T20:24:30.256221799+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/number","Output":"--- PASS: TestI04HTTPInputFailures/number (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.256232605+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/number","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.256273316+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing"}
+{"Time":"2026-11-15T20:24:30.256279054+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing","Output":"=== RUN   TestI04HTTPInputFailures/missing\n"}
+{"Time":"2026-11-15T20:24:30.257241568+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing","Output":"--- PASS: TestI04HTTPInputFailures/missing (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.257251512+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.257275017+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/unknown"}
+{"Time":"2026-11-15T20:24:30.25728333+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/unknown","Output":"=== RUN   TestI04HTTPInputFailures/unknown\n"}
+{"Time":"2026-11-15T20:24:30.25819032+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/unknown","Output":"--- PASS: TestI04HTTPInputFailures/unknown (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.258199324+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/unknown","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.258241126+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/second"}
+{"Time":"2026-11-15T20:24:30.258247826+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/second","Output":"=== RUN   TestI04HTTPInputFailures/second\n"}
+{"Time":"2026-11-15T20:24:30.259002034+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/second","Output":"--- PASS: TestI04HTTPInputFailures/second (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.259012539+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/second","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.259014943+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/media"}
+{"Time":"2026-11-15T20:24:30.259016114+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/media","Output":"=== RUN   TestI04HTTPInputFailures/media\n"}
+{"Time":"2026-11-15T20:24:30.25972492+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/media","Output":"--- PASS: TestI04HTTPInputFailures/media (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.259732712+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/media","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.259757959+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing_id"}
+{"Time":"2026-11-15T20:24:30.259763668+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing_id","Output":"=== RUN   TestI04HTTPInputFailures/missing_id\n"}
+{"Time":"2026-11-15T20:24:30.260595637+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing_id","Output":"--- PASS: TestI04HTTPInputFailures/missing_id (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.260606393+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/missing_id","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.260636367+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/method"}
+{"Time":"2026-11-15T20:24:30.260640684+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/method","Output":"=== RUN   TestI04HTTPInputFailures/method\n"}
+{"Time":"2026-11-15T20:24:30.261535667+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/method","Output":"--- PASS: TestI04HTTPInputFailures/method (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.261543118+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/method","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.261575386+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/route"}
+{"Time":"2026-11-15T20:24:30.261581064+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/route","Output":"=== RUN   TestI04HTTPInputFailures/route\n"}
+{"Time":"2026-11-15T20:24:30.262345593+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/route","Output":"--- PASS: TestI04HTTPInputFailures/route (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.262352192+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/route","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.262387275+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_0"}
+{"Time":"2026-11-15T20:24:30.262388487+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_0","Output":"=== RUN   TestI04HTTPInputFailures/id_0\n"}
+{"Time":"2026-11-15T20:24:30.263269995+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_0","Output":"--- PASS: TestI04HTTPInputFailures/id_0 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.263280551+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_0","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.263284887+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_-1"}
+{"Time":"2026-11-15T20:24:30.263293009+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_-1","Output":"=== RUN   TestI04HTTPInputFailures/id_-1\n"}
+{"Time":"2026-11-15T20:24:30.264059541+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_-1","Output":"--- PASS: TestI04HTTPInputFailures/id_-1 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.264067493+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_-1","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.264198628+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_01"}
+{"Time":"2026-11-15T20:24:30.26419996+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_01","Output":"=== RUN   TestI04HTTPInputFailures/id_01\n"}
+{"Time":"2026-11-15T20:24:30.265176558+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_01","Output":"--- PASS: TestI04HTTPInputFailures/id_01 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.2651844+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_01","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.265186784+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_abc"}
+{"Time":"2026-11-15T20:24:30.265188356+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_abc","Output":"=== RUN   TestI04HTTPInputFailures/id_abc\n"}
+{"Time":"2026-11-15T20:24:30.265861388+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_abc","Output":"--- PASS: TestI04HTTPInputFailures/id_abc (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.265864663+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_abc","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.265884593+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_2147483648"}
+{"Time":"2026-11-15T20:24:30.265891153+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_2147483648","Output":"=== RUN   TestI04HTTPInputFailures/id_2147483648\n"}
+{"Time":"2026-11-15T20:24:30.296070154+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_2147483648","Output":"--- PASS: TestI04HTTPInputFailures/id_2147483648 (0.03s)\n"}
+{"Time":"2026-11-15T20:24:30.296794373+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures/id_2147483648","Elapsed":0.03}
+{"Time":"2026-11-15T20:24:30.296810597+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures","Output":"--- PASS: TestI04HTTPInputFailures (0.04s)\n"}
+{"Time":"2026-11-15T20:24:30.296857006+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI04HTTPInputFailures","Elapsed":0.04}
+{"Time":"2026-11-15T20:24:30.296869094+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase"}
+{"Time":"2026-11-15T20:24:30.296909454+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase","Output":"=== RUN   TestI05ClosedDatabase\n"}
+{"Time":"2026-11-15T20:24:30.298302128+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/GET"}
+{"Time":"2026-11-15T20:24:30.298399773+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/GET","Output":"=== RUN   TestI05ClosedDatabase/GET\n"}
+{"Time":"2026-11-15T20:24:30.305198248+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/GET","Output":"--- PASS: TestI05ClosedDatabase/GET (0.01s)\n"}
+{"Time":"2026-11-15T20:24:30.305268773+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/GET","Elapsed":0.01}
+{"Time":"2026-11-15T20:24:30.305700816+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/POST"}
+{"Time":"2026-11-15T20:24:30.305724621+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/POST","Output":"=== RUN   TestI05ClosedDatabase/POST\n"}
+{"Time":"2026-11-15T20:24:30.339514781+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/POST","Output":"--- PASS: TestI05ClosedDatabase/POST (0.03s)\n"}
+{"Time":"2026-11-15T20:24:30.339793656+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/POST","Elapsed":0.03}
+{"Time":"2026-11-15T20:24:30.339855118+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/PATCH"}
+{"Time":"2026-11-15T20:24:30.339890931+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/PATCH","Output":"=== RUN   TestI05ClosedDatabase/PATCH\n"}
+{"Time":"2026-11-15T20:24:30.34330155+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/PATCH","Output":"--- PASS: TestI05ClosedDatabase/PATCH (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.343319366+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/PATCH","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.343323402+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/DELETE"}
+{"Time":"2026-11-15T20:24:30.343324564+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/DELETE","Output":"=== RUN   TestI05ClosedDatabase/DELETE\n"}
+{"Time":"2026-11-15T20:24:30.345167348+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/DELETE","Output":"--- PASS: TestI05ClosedDatabase/DELETE (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.345180858+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase/DELETE","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.34524906+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase","Output":"--- PASS: TestI05ClosedDatabase (0.05s)\n"}
+{"Time":"2026-11-15T20:24:30.345257012+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI05ClosedDatabase","Elapsed":0.05}
+{"Time":"2026-11-15T20:24:30.345482968+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges"}
+{"Time":"2026-11-15T20:24:30.345484831+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges","Output":"=== RUN   TestI06TransportEdges\n"}
+{"Time":"2026-11-15T20:24:30.34569208+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/html"}
+{"Time":"2026-11-15T20:24:30.345693342+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/html","Output":"=== RUN   TestI06TransportEdges/html\n"}
+{"Time":"2026-11-15T20:24:30.348616855+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/html","Output":"--- PASS: TestI06TransportEdges/html (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.348648192+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/html","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.348650105+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/0"}
+{"Time":"2026-11-15T20:24:30.348651277+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/0","Output":"=== RUN   TestI06TransportEdges/0\n"}
+{"Time":"2026-11-15T20:24:30.349687399+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/0","Output":"--- PASS: TestI06TransportEdges/0 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.349695972+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/0","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.349719577+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/1"}
+{"Time":"2026-11-15T20:24:30.349724915+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/1","Output":"=== RUN   TestI06TransportEdges/1\n"}
+{"Time":"2026-11-15T20:24:30.350485528+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/1","Output":"--- PASS: TestI06TransportEdges/1 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.350501221+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/1","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.350542222+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/2"}
+{"Time":"2026-11-15T20:24:30.350564105+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/2","Output":"=== RUN   TestI06TransportEdges/2\n"}
+{"Time":"2026-11-15T20:24:30.351453349+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/2","Output":"--- PASS: TestI06TransportEdges/2 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.351530044+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/2","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.351532447+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/3"}
+{"Time":"2026-11-15T20:24:30.351595521+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/3","Output":"=== RUN   TestI06TransportEdges/3\n"}
+{"Time":"2026-11-15T20:24:30.352398767+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/3","Output":"--- PASS: TestI06TransportEdges/3 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.352405868+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/3","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.352418256+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/4"}
+{"Time":"2026-11-15T20:24:30.352420279+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/4","Output":"=== RUN   TestI06TransportEdges/4\n"}
+{"Time":"2026-11-15T20:24:30.353200942+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/4","Output":"--- PASS: TestI06TransportEdges/4 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.353218488+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/4","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.353240771+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/5"}
+{"Time":"2026-11-15T20:24:30.353245869+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/5","Output":"=== RUN   TestI06TransportEdges/5\n"}
+{"Time":"2026-11-15T20:24:30.3538447+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/5","Output":"--- PASS: TestI06TransportEdges/5 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.353851511+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/5","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.353884309+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/6"}
+{"Time":"2026-11-15T20:24:30.353889507+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/6","Output":"=== RUN   TestI06TransportEdges/6\n"}
+{"Time":"2026-11-15T20:24:30.354505895+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/6","Output":"--- PASS: TestI06TransportEdges/6 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.354523812+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/6","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.354564002+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/7"}
+{"Time":"2026-11-15T20:24:30.354569139+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/7","Output":"=== RUN   TestI06TransportEdges/7\n"}
+{"Time":"2026-11-15T20:24:30.35541909+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/7","Output":"--- PASS: TestI06TransportEdges/7 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.355433332+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/7","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.355435705+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/8"}
+{"Time":"2026-11-15T20:24:30.355437418+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/8","Output":"=== RUN   TestI06TransportEdges/8\n"}
+{"Time":"2026-11-15T20:24:30.356505909+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/8","Output":"--- PASS: TestI06TransportEdges/8 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.356515904+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/8","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.356539829+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/9"}
+{"Time":"2026-11-15T20:24:30.356545738+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/9","Output":"=== RUN   TestI06TransportEdges/9\n"}
+{"Time":"2026-11-15T20:24:30.357428443+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/9","Output":"--- PASS: TestI06TransportEdges/9 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.35746027+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/9","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.357470185+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/10"}
+{"Time":"2026-11-15T20:24:30.357472098+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/10","Output":"=== RUN   TestI06TransportEdges/10\n"}
+{"Time":"2026-11-15T20:24:30.358459688+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/10","Output":"--- PASS: TestI06TransportEdges/10 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.35846746+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/10","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.358475672+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/11"}
+{"Time":"2026-11-15T20:24:30.358476914+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/11","Output":"=== RUN   TestI06TransportEdges/11\n"}
+{"Time":"2026-11-15T20:24:30.359151649+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/11","Output":"--- PASS: TestI06TransportEdges/11 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.359160091+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/11","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.359162084+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/12"}
+{"Time":"2026-11-15T20:24:30.359163617+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/12","Output":"=== RUN   TestI06TransportEdges/12\n"}
+{"Time":"2026-11-15T20:24:30.359760856+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/12","Output":"--- PASS: TestI06TransportEdges/12 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.359769018+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/12","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.359770731+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/13"}
+{"Time":"2026-11-15T20:24:30.359772153+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/13","Output":"=== RUN   TestI06TransportEdges/13\n"}
+{"Time":"2026-11-15T20:24:30.360574638+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/13","Output":"--- PASS: TestI06TransportEdges/13 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.36058946+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/13","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.360592835+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/14"}
+{"Time":"2026-11-15T20:24:30.360594257+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/14","Output":"=== RUN   TestI06TransportEdges/14\n"}
+{"Time":"2026-11-15T20:24:30.361278115+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/14","Output":"--- PASS: TestI06TransportEdges/14 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.361343733+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/14","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.361345566+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/15"}
+{"Time":"2026-11-15T20:24:30.361346788+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/15","Output":"=== RUN   TestI06TransportEdges/15\n"}
+{"Time":"2026-11-15T20:24:30.361906321+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/15","Output":"--- PASS: TestI06TransportEdges/15 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.361913612+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/15","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.361948123+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/charset_utf8"}
+{"Time":"2026-11-15T20:24:30.36198644+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/charset_utf8","Output":"=== RUN   TestI06TransportEdges/charset_utf8\n"}
+{"Time":"2026-11-15T20:24:30.36266441+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/charset_utf8","Output":"--- PASS: TestI06TransportEdges/charset_utf8 (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.362673624+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/charset_utf8","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.362686212+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/page_storage"}
+{"Time":"2026-11-15T20:24:30.362687614+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/page_storage","Output":"=== RUN   TestI06TransportEdges/page_storage\n"}
+{"Time":"2026-11-15T20:24:30.363448477+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/page_storage","Output":"--- PASS: TestI06TransportEdges/page_storage (0.00s)\n"}
+{"Time":"2026-11-15T20:24:30.363464782+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges/page_storage","Elapsed":0}
+{"Time":"2026-11-15T20:24:30.363481146+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges","Output":"--- PASS: TestI06TransportEdges (0.02s)\n"}
+{"Time":"2026-11-15T20:24:30.363500375+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI06TransportEdges","Elapsed":0.02}
+{"Time":"2026-11-15T20:24:30.3636721+03:00","Action":"run","Package":"example.com/tasks/internal/handler","Test":"TestI08ConcurrentHTTP"}
+{"Time":"2026-11-15T20:24:30.363673372+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI08ConcurrentHTTP","Output":"=== RUN   TestI08ConcurrentHTTP\n"}
+{"Time":"2026-11-15T20:24:30.373209708+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Test":"TestI08ConcurrentHTTP","Output":"--- PASS: TestI08ConcurrentHTTP (0.01s)\n"}
+{"Time":"2026-11-15T20:24:30.373224751+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Test":"TestI08ConcurrentHTTP","Elapsed":0.01}
+{"Time":"2026-11-15T20:24:30.373377418+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Output":"PASS\n"}
+{"Time":"2026-11-15T20:24:31.125628597+03:00","Action":"output","Package":"example.com/tasks/internal/repository","Output":"ok  \texample.com/tasks/internal/repository\t1.015s\n"}
+{"Time":"2026-11-15T20:24:31.125667384+03:00","Action":"pass","Package":"example.com/tasks/internal/repository","Elapsed":1.016}
+{"Time":"2026-11-15T20:24:31.375924249+03:00","Action":"output","Package":"example.com/tasks/internal/handler","Output":"ok  \texample.com/tasks/internal/handler\t1.132s\n"}
+{"Time":"2026-11-15T20:24:31.375983287+03:00","Action":"pass","Package":"example.com/tasks/internal/handler","Elapsed":1.1320000000000001}

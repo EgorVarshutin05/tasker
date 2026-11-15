@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Задачи — личное пространство</title>
+<style>
+:root{color-scheme:light;--ink:#192c35;--muted:#667b82;--line:#dce5e4;--accent:#14685f}
+*{box-sizing:border-box}body{margin:0;background:#f1f5f2;color:var(--ink);font:16px/1.55 system-ui,sans-serif}
+main{max-width:960px;margin:64px auto;padding:0 24px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent)}
+header{display:flex;justify-content:space-between;align-items:center;gap:20px}h1{font-size:clamp(38px,7vw,60px);letter-spacing:-.06em;margin:10px 0;line-height:1.1}
+.subtitle{color:var(--muted);max-width:580px}.mark{font-size:36px;color:var(--accent);border:1px solid var(--line);border-radius:20px;padding:8px 20px;background:#fff}
+.card{margin-top:32px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 36px #193a3010;overflow:hidden}
+form{padding:28px;display:flex;align-items:end;gap:12px;border-bottom:1px solid var(--line)}label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}.field{flex:1;min-width:0}
+input{width:100%;padding:13px 15px;font:inherit;border:1px solid #c7d4d1;border-radius:10px;outline-offset:3px}button{font:inherit;cursor:pointer;border-radius:10px;padding:12px 16px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+#create-button{color:#fff;background:var(--accent);border-color:var(--accent);white-space:nowrap}button:hover{filter:brightness(.96)}button:disabled{cursor:default;opacity:.45}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:18px 24px;border-bottom:1px solid #edf1ef}th{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);background:#fafcfb}
+.title{overflow-wrap:anywhere;min-width:200px}.status{font-size:13px;white-space:nowrap;color:var(--accent)}.actions{display:flex;gap:8px;justify-content:flex-end}.actions button{font-size:12px;padding:8px 12px;white-space:nowrap}
+.delete-button{color:#a13f38}#error-banner{color:#a13f38;margin:0 28px;font-size:14px}#error-banner:not(:empty){padding:14px 0}.hint{padding:18px 24px;color:var(--muted);font-size:13px;margin:0}footer{display:flex;justify-content:space-between;margin-top:20px;color:var(--muted);font-size:12px}
+@media(max-width:650px){main{margin:32px auto}form{flex-direction:column;align-items:stretch;padding:20px}.mark{display:none}th,td{padding:14px}.actions{flex-direction:column}}
+</style>
+</head>
+<body>
+<main>
+<header><div><span class="eyebrow">Меньше шума · больше сделанного</span><h1>Мои задачи<span style="color:#9abcb2">.</span></h1><p class="subtitle">Запишите то, что важно. Отмечайте сделанное и освобождайте место для следующего шага.</p></div><span class="mark" aria-hidden="true">✓</span></header>
+<section class="card" aria-label="Список задач">
+<form id="task-form" novalidate>
+<div class="field"><label for="title-input">Новая задача</label><input id="title-input" name="title" autocomplete="off" placeholder="Например, подготовить отчет"></div>
+<button id="create-button" type="submit">＋ Добавить</button>
+</form>
+<p id="error-banner" role="alert" aria-live="polite"></p>
+<div class="table-wrap"><table><thead><tr><th>Задача</th><th>Статус</th><th style="text-align:right">Действия</th></tr></thead>
+<tbody id="tasks-body">{{range .}}<tr data-id="{{.ID}}"><td class="title">{{.Title}}</td><td class="status">{{if .Done}}Выполнена{{else}}Не выполнена{{end}}</td><td><div class="actions"><button type="button" class="done-button" {{if .Done}}disabled{{end}}>Завершить</button><button type="button" class="delete-button">Удалить</button></div></td></tr>{{end}}</tbody>
+</table></div>
+<p class="hint">Название — от 1 до 100 символов. Все изменения сохраняются на этом компьютере.</p>
+</section><footer><span>Личный список · без регистрации</span><span>Go + SQLite</span></footer>
+</main>
+<script>
+'use strict';
+const form = document.querySelector('#task-form');
+const input = document.querySelector('#title-input');
+const banner = document.querySelector('#error-banner');
+const tbody = document.querySelector('#tasks-body');
+async function send(path, options) {
+  banner.textContent = '';
+  try {
+    const response = await fetch(path, options);
+    if (!response.ok) {
+      const body = await response.json();
+      const messages = {title_length:'Название: от 1 до 100 символов', storage:'Хранилище недоступно', not_found:'Задача не найдена'};
+      banner.textContent = messages[body.error] || 'Не удалось выполнить запрос';
+    }
+    return response;
+  } catch (_) {
+    banner.textContent = 'Нет соединения с сервером';
+    return null;
+  }
+}
+function appendTask(task) {
+  const tr = document.createElement('tr');
+  tr.dataset.id = String(task.id);
+  const title = document.createElement('td');
+  title.className = 'title';
+  title.textContent = task.title;
+  const status = document.createElement('td');
+  status.className = 'status';
+  status.textContent = task.done ? 'Выполнена' : 'Не выполнена';
+  const actions = document.createElement('td');
+  const group = document.createElement('div');
+  group.className = 'actions';
+  for (const [kind, text] of [['done','Завершить'], ['delete','Удалить']]) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = kind + '-button';
+    button.textContent = text;
+    button.disabled = kind === 'done' && task.done;
+    group.append(button);
+  }
+  actions.append(group);
+  tr.append(title, status, actions);
+  tbody.append(tr);
+}
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = document.querySelector('#create-button');
+  button.disabled = true;
+  try {
+    const response = await send('/api/tasks', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({title:input.value})});
+    if (response && response.status === 201) {
+      appendTask(await response.json());
+      input.value = '';
+      input.focus();
+    }
+  } finally { button.disabled = false; }
+});
+tbody.addEventListener('click', async event => {
+  const button = event.target.closest('button');
+  if (!button || button.disabled) return;
+  const tr = button.closest('tr');
+  if (button.classList.contains('done-button')) {
+    const response = await send('/api/tasks/' + tr.dataset.id + '/done', {method:'PATCH'});
+    if (response && response.status === 200) {
+      tr.querySelector('.status').textContent = 'Выполнена';
+      button.disabled = true;
+    }
+  } else if (button.classList.contains('delete-button')) {
+    const response = await send('/api/tasks/' + tr.dataset.id, {method:'DELETE'});
+    if (response && response.status === 204) tr.remove();
+  }
+});
+</script>
+</body>
+</html>

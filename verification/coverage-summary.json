@@ -1,0 +1,27 @@
+{
+  "handler": {
+    "covered": 89,
+    "total": 91,
+    "percent": 97.8021978021978
+  },
+  "repository": {
+    "covered": 51,
+    "total": 58,
+    "percent": 87.93103448275862
+  },
+  "service": {
+    "covered": 26,
+    "total": 26,
+    "percent": 100.0
+  },
+  "total": {
+    "covered": 166,
+    "total": 175,
+    "percent": 94.85714285714286
+  },
+  "thresholds": {
+    "total": 85,
+    "service": 90
+  },
+  "passed": true
+}
