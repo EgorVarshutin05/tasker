@@ -6,16 +6,16 @@
 
 **Небольшой список задач на Go и полный путь от бизнес-правил до проверки в браузере.**
 
-[![Build & Test](https://img.shields.io/github/actions/workflow/status/OWNER/REPOSITORY/ci.yml?label=Build%20%26%20Test&style=flat-square)](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml)
+[![Build & Test](https://img.shields.io/github/actions/workflow/status/EgorVarshutin05/tasker/ci.yml?label=Build%20%26%20Test&style=flat-square)](https://github.com/EgorVarshutin05/tasker/actions/workflows/ci.yml)
 ![Go](https://img.shields.io/badge/Go-1.23%20%7C%20CGO%20SQLite3-00ADD8?style=flat-square&logo=go&logoColor=white)
 ![Coverage thresholds](https://img.shields.io/badge/Coverage-%E2%89%A585%25%20total%20%7C%20%E2%89%A590%25%20service-14685f?style=flat-square)
-[![Race detector](https://img.shields.io/github/actions/workflow/status/OWNER/REPOSITORY/ci.yml?label=Race%20Detector&style=flat-square)](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml)
+[![Race detector](https://img.shields.io/github/actions/workflow/status/EgorVarshutin05/tasker/ci.yml?label=Race%20Detector&style=flat-square)](https://github.com/EgorVarshutin05/tasker/actions/workflows/ci.yml)
 
-[![Unit](https://img.shields.io/github/actions/workflow/status/OWNER/REPOSITORY/ci.yml?label=Unit%20U01-U05&style=flat-square)](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml)
-[![Integration](https://img.shields.io/github/actions/workflow/status/OWNER/REPOSITORY/ci.yml?label=Integration%20I01-I05&style=flat-square)](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml)
-[![E2E](https://img.shields.io/github/actions/workflow/status/OWNER/REPOSITORY/ci.yml?label=E2E%20Playwright%20A01-A05&style=flat-square)](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml)
-[![Security](https://img.shields.io/github/actions/workflow/status/OWNER/REPOSITORY/ci.yml?label=Security%20SQLi%2FXSS%20S03-S05&style=flat-square)](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml)
-[![Load execution](https://img.shields.io/github/actions/workflow/status/OWNER/REPOSITORY/load.yml?label=Load%20k6%20S01-S02&style=flat-square)](https://github.com/OWNER/REPOSITORY/actions/workflows/load.yml)
+[![Unit](https://img.shields.io/github/actions/workflow/status/EgorVarshutin05/tasker/ci.yml?label=Unit%20U01-U05&style=flat-square)](https://github.com/EgorVarshutin05/tasker/actions/workflows/ci.yml)
+[![Integration](https://img.shields.io/github/actions/workflow/status/EgorVarshutin05/tasker/ci.yml?label=Integration%20I01-I05&style=flat-square)](https://github.com/EgorVarshutin05/tasker/actions/workflows/ci.yml)
+[![E2E](https://img.shields.io/github/actions/workflow/status/EgorVarshutin05/tasker/ci.yml?label=E2E%20Playwright%20A01-A05&style=flat-square)](https://github.com/EgorVarshutin05/tasker/actions/workflows/ci.yml)
+[![Security](https://img.shields.io/github/actions/workflow/status/EgorVarshutin05/tasker/ci.yml?label=Security%20SQLi%2FXSS%20S03-S05&style=flat-square)](https://github.com/EgorVarshutin05/tasker/actions/workflows/ci.yml)
+[![Load execution](https://img.shields.io/github/actions/workflow/status/EgorVarshutin05/tasker/load.yml?label=Load%20k6%20S01-S02&style=flat-square)](https://github.com/EgorVarshutin05/tasker/actions/workflows/load.yml)
 ![Load thresholds](https://img.shields.io/badge/Load%20target-50%20RPS%20%7C%20p95%20%E2%89%A4%20200ms-14685f?style=flat-square)
 ![Report standard](https://img.shields.io/badge/%D0%93%D0%9E%D0%A1%D0%A2-7.32--2001-526772?style=flat-square)
 
